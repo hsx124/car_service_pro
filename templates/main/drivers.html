@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans '司机列表' %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-5">{% trans '我们的专业司机' %}</h1>
+
+    <!-- 筛选器 -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <form method="get" class="form-inline justify-content-center">
+                <div class="form-group mx-2">
+                    <label for="experience" class="mr-2">{% trans '驾龄' %}:</label>
+                    <select name="experience" id="experience" class="form-control">
+                        <option value="">{% trans '全部' %}</option>
+                        <option value="3-5" {% if experience == '3-5' %}selected{% endif %}>3-5{% trans '年' %}</option>
+                        <option value="5-10" {% if experience == '5-10' %}selected{% endif %}>5-10{% trans '年' %}</option>
+                        <option value="10+" {% if experience == '10+' %}selected{% endif %}>10+{% trans '年' %}</option>
+                    </select>
+                </div>
+                <div class="form-group mx-2">
+                    <label for="rating" class="mr-2">{% trans '最低评分' %}:</label>
+                    <select name="rating" id="rating" class="form-control">
+                        <option value="">{% trans '全部' %}</option>
+                        <option value="4.5" {% if rating == '4.5' %}selected{% endif %}>4.5+</option>
+                        <option value="4.0" {% if rating == '4.0' %}selected{% endif %}>4.0+</option>
+                        <option value="3.5" {% if rating == '3.5' %}selected{% endif %}>3.5+</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">{% trans '筛选' %}</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 司机列表 -->
+    <div class="row">
+        {% for driver in drivers %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                {% if driver.photo %}
+                    <img src="{{ driver.photo.url }}" class="card-img-top" alt="{{ driver.user.get_full_name }}" style="height: 250px; object-fit: cover;">
+                {% else %}
+                    <img src="{% static 'img/default-avatar.png' %}" class="card-img-top" alt="{{ driver.user.get_full_name }}" style="height: 250px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ driver.user.get_full_name }}</h5>
+                    <p class="card-text">
+                        <small class="text-muted">{% trans '驾龄' %}: {{ driver.experience_years }} {% trans '年' %}</small>
+                        <br>
+                        <small class="text-muted">{% trans '评分' %}: {{ driver.rating }}/5.0</small>
+                    </p>
+                    <p class="card-text">{{ driver.bio }}</p>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            {% trans '语言' %}:
+                            {% if driver.languages == 'zh' %}{% trans '中文' %}
+                            {% elif driver.languages == 'ja' %}{% trans '日语' %}
+                            {% elif driver.languages == 'en' %}{% trans '英语' %}
+                            {% elif driver.languages == 'zh_ja' %}{% trans '中文和日语' %}
+                            {% elif driver.languages == 'zh_en' %}{% trans '中文和英语' %}
+                            {% elif driver.languages == 'ja_en' %}{% trans '日语和英语' %}
+                            {% elif driver.languages == 'all' %}{% trans '中文、日语和英语' %}
+                            {% endif %}
+                        </small>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-primary btn-block">{% trans '预订用车' %}</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p>{% trans '暂无符合条件的司机' %}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- 分页 -->
+    {% if is_paginated %}
+    <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if experience %}&experience={{ experience }}{% endif %}{% if rating %}&rating={{ rating }}{% endif %}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                <a class="page-link" href="?page={{ num }}{% if experience %}&experience={{ experience }}{% endif %}{% if rating %}&rating={{ rating }}{% endif %}">{{ num }}</a>
+            </li>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if experience %}&experience={{ experience }}{% endif %}{% if rating %}&rating={{ rating }}{% endif %}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %} 

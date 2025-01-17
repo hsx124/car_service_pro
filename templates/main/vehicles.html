@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}车辆展示 - 用车预订平台{% endblock %}
+
+{% block content %}
+<!-- 页面标题 -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h1 class="text-center mb-4">我们的车队</h1>
+        <p class="text-center lead mb-0">多样化的车型选择，满足您的不同需求</p>
+    </div>
+</section>
+
+<!-- 车辆筛选 -->
+<section class="py-5">
+    <div class="container">
+        <!-- 筛选器 -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">车型</label>
+                                <select class="form-select" name="type">
+                                    <option value="">全部</option>
+                                    <option value="economy">经济型</option>
+                                    <option value="business">商务型</option>
+                                    <option value="luxury">豪华型</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">座位数</label>
+                                <select class="form-select" name="seats">
+                                    <option value="">全部</option>
+                                    <option value="4">4座</option>
+                                    <option value="5">5座</option>
+                                    <option value="7">7座</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">&nbsp;</label>
+                                <button type="submit" class="btn btn-primary w-100">筛选</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 车辆列表 -->
+        <div class="row">
+            {% for vehicle in vehicles %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 animate-on-scroll">
+                    {% if vehicle.image %}
+                    <img src="{{ vehicle.image.url }}" class="card-img-top" alt="{{ vehicle.brand }} {{ vehicle.model }}">
+                    {% else %}
+                    <img src="{% static 'img/default-car.jpg' %}" class="card-img-top" alt="默认车辆图片">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ vehicle.brand }} {{ vehicle.model }}</h5>
+                        <div class="mb-3">
+                            <span class="badge bg-primary">{{ vehicle.get_type_display }}</span>
+                            <span class="badge bg-info">{{ vehicle.seats }}座</span>
+                            <span class="badge bg-success">{{ vehicle.get_status_display }}</span>
+                        </div>
+                        <p class="card-text">
+                            <i class="fas fa-calendar-alt me-2"></i>年份：{{ vehicle.year }}年<br>
+                            <i class="fas fa-id-card me-2"></i>车牌号：{{ vehicle.plate_number }}
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#vehicleModal{{ vehicle.id }}">
+                            查看详情
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 车辆详情模态框 -->
+            <div class="modal fade" id="vehicleModal{{ vehicle.id }}" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">{{ vehicle.brand }} {{ vehicle.model }} - 车辆详情</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {% if vehicle.image %}
+                                    <img src="{{ vehicle.image.url }}" class="img-fluid rounded" alt="{{ vehicle.brand }} {{ vehicle.model }}">
+                                    {% else %}
+                                    <img src="{% static 'img/default-car.jpg' %}" class="img-fluid rounded" alt="默认车辆图片">
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>基本信息</h4>
+                                    <p>
+                                        <i class="fas fa-car me-2"></i>车型：{{ vehicle.get_type_display }}<br>
+                                        <i class="fas fa-calendar-alt me-2"></i>年份：{{ vehicle.year }}年<br>
+                                        <i class="fas fa-chair me-2"></i>座位数：{{ vehicle.seats }}座<br>
+                                        <i class="fas fa-id-card me-2"></i>车牌号：{{ vehicle.plate_number }}<br>
+                                        <i class="fas fa-info-circle me-2"></i>状态：{{ vehicle.get_status_display }}
+                                    </p>
+                                    <h4>车辆特点</h4>
+                                    <div class="features">
+                                        {{ vehicle.features|linebreaks }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{% url 'booking' %}?vehicle={{ vehicle.id }}" class="btn btn-primary">选择该车辆</a>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    暂无符合条件的车辆
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- 分页 -->
+        {% if is_paginated %}
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.seats %}&seats={{ request.GET.seats }}{% endif %}">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.seats %}&seats={{ request.GET.seats }}{% endif %}">
+                                {{ num }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.seats %}&seats={{ request.GET.seats }}{% endif %}">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</section>
+
+<!-- 预订引导 -->
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="mb-4">找到心仪的车辆了吗？</h2>
+        <p class="lead mb-4">立即预订，开启您的舒适旅程</p>
+        <a href="{% url 'booking' %}" class="btn btn-primary btn-lg">立即预订</a>
+    </div>
+</section>
+{% endblock %} 

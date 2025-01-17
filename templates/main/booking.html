@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}在线预订 - 用车预订平台{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <!-- 预订表单 -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">在线预订</h2>
+                    <form method="post" class="needs-validation" novalidate data-autosave>
+                        {% csrf_token %}
+                        
+                        <!-- 用车类型 -->
+                        <div class="mb-4">
+                            <label class="form-label">用车类型</label>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <input type="radio" class="btn-check" name="car_type" id="economy" value="economy" required>
+                                            <label class="btn btn-outline-primary w-100" for="economy">
+                                                <i class="fas fa-car mb-2"></i><br>
+                                                经济型
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <input type="radio" class="btn-check" name="car_type" id="business" value="business">
+                                            <label class="btn btn-outline-primary w-100" for="business">
+                                                <i class="fas fa-car-side mb-2"></i><br>
+                                                商务型
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <input type="radio" class="btn-check" name="car_type" id="luxury" value="luxury">
+                                            <label class="btn btn-outline-primary w-100" for="luxury">
+                                                <i class="fas fa-car-alt mb-2"></i><br>
+                                                豪华型
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 行程信息 -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">出发地</label>
+                                    <input type="text" class="form-control" name="pickup_location" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">目的地</label>
+                                    <input type="text" class="form-control" name="destination" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 时间信息 -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">出发日期</label>
+                                    <input type="date" class="form-control" name="pickup_date" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">出发时间</label>
+                                    <input type="time" class="form-control" name="pickup_time" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 乘客信息 -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">乘客人数</label>
+                                    <select class="form-select" name="passengers" required>
+                                        <option value="">请选择</option>
+                                        <option value="1-2">1-2人</option>
+                                        <option value="3-4">3-4人</option>
+                                        <option value="5-6">5-6人</option>
+                                        <option value="7+">7人以上</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">行李数量</label>
+                                    <select class="form-select" name="luggage" required>
+                                        <option value="">请选择</option>
+                                        <option value="0">无行李</option>
+                                        <option value="1-2">1-2件</option>
+                                        <option value="3-4">3-4件</option>
+                                        <option value="5+">5件以上</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 联系信息 -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">联系人姓名</label>
+                                    <input type="text" class="form-control" name="contact_name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">联系电话</label>
+                                    <input type="tel" class="form-control" name="contact_phone" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 备注信息 -->
+                        <div class="mb-4">
+                            <label class="form-label">特殊要求（选填）</label>
+                            <textarea class="form-control" name="special_requests" rows="3"></textarea>
+                        </div>
+
+                        <!-- 提交按钮 -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">提交预订</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 服务说明 -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">服务说明</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            专业司机接送
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            全程保险保障
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            免费等待15分钟
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            24小时客服支持
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title">需要帮助？</h3>
+                    <p class="card-text">如果您在预订过程中需要帮助，请随时联系我们的客服团队。</p>
+                    <div class="d-grid">
+                        <a href="{% url 'contact' %}" class="btn btn-outline-primary">联系客服</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 价格估算模态框 -->
+<div class="modal fade" id="priceEstimateModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">价格估算</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="price-details">
+                    <!-- 价格详情将通过JavaScript动态填充 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // 表单验证
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        });
+
+        // 实时价格估算
+        const carTypeInputs = document.querySelectorAll('input[name="car_type"]');
+        const pickupLocation = document.querySelector('input[name="pickup_location"]');
+        const destination = document.querySelector('input[name="destination"]');
+
+        function updatePriceEstimate() {
+            const selectedCarType = document.querySelector('input[name="car_type"]:checked');
+            if (selectedCarType && pickupLocation.value && destination.value) {
+                // 这里可以添加调用价格估算API的逻辑
+                console.log('Calculating price...');
+            }
+        }
+
+        carTypeInputs.forEach(input => {
+            input.addEventListener('change', updatePriceEstimate);
+        });
+        pickupLocation.addEventListener('change', updatePriceEstimate);
+        destination.addEventListener('change', updatePriceEstimate);
+    });
+</script>
+{% endblock %} 

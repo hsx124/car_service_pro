@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans '添加评价' %} - Car Service Pro{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">{% trans '为您的用车体验评分' %}</h4>
+                        
+                        <!-- 预订信息 -->
+                        <div class="mb-4 p-3 bg-light rounded">
+                            <h6 class="mb-3">{% trans '预订信息' %}</h6>
+                            <p class="mb-2">
+                                <i class="bi bi-calendar me-2"></i>
+                                {{ booking.pickup_time|date:"Y-m-d H:i" }}
+                            </p>
+                            <p class="mb-2">
+                                <i class="bi bi-geo-alt me-2"></i>
+                                {{ booking.pickup_location }} → {{ booking.destination }}
+                            </p>
+                            <p class="mb-2">
+                                <i class="bi bi-car-front me-2"></i>
+                                {{ booking.vehicle.brand }} {{ booking.vehicle.model }}
+                            </p>
+                            <p class="mb-0">
+                                <i class="bi bi-person me-2"></i>
+                                {% trans '司机' %}: {{ booking.driver.user.get_full_name }}
+                            </p>
+                        </div>
+                        
+                        <!-- 评价表单 -->
+                        <form method="post">
+                            {% csrf_token %}
+                            
+                            <!-- 评分 -->
+                            <div class="mb-4">
+                                <label class="form-label">{% trans '您的评分' %} <span class="text-danger">*</span></label>
+                                <div class="rating-input">
+                                    {% for value, stars in rating_choices %}
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" 
+                                               name="rating" id="rating{{ value }}" 
+                                               value="{{ value }}" required>
+                                        <label class="form-check-label" for="rating{{ value }}">
+                                            {{ stars }}
+                                        </label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            
+                            <!-- 评价内容 -->
+                            <div class="mb-4">
+                                <label class="form-label">{% trans '评价内容' %} <span class="text-danger">*</span></label>
+                                <textarea class="form-control" name="comment" rows="4" 
+                                          placeholder="{% trans '请分享您的用车体验...' %}" required></textarea>
+                            </div>
+                            
+                            <!-- 提交按钮 -->
+                            <div class="text-end">
+                                <a href="{% url 'my_bookings' %}" class="btn btn-outline-secondary me-2">
+                                    {% trans '取消' %}
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-star me-1"></i>
+                                    {% trans '提交评价' %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 评分样式 -->
+<style>
+.rating-input .form-check {
+    margin-right: 1rem;
+}
+.rating-input .form-check-label {
+    color: #ffc107;
+    font-size: 1.2rem;
+}
+</style>
+{% endblock %} 
