@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-{% block title %}在线预订 - 用车预订平台{% endblock %}
+{% block title %}在线预订 - Car Service Pro{% endblock %}
 
 {% block content %}
 <div class="container py-5">
@@ -12,12 +12,23 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h2 class="card-title mb-4">在线预订</h2>
-                    <form method="post" class="needs-validation" novalidate data-autosave>
+                    
+                    {% if messages %}
+                    <div class="messages mb-4">
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <form method="post" class="needs-validation" novalidate>
                         {% csrf_token %}
                         
                         <!-- 用车类型 -->
                         <div class="mb-4">
-                            <label class="form-label">用车类型</label>
+                            <label class="form-label">用车类型 <span class="text-danger">*</span></label>
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <div class="card">
@@ -27,6 +38,9 @@
                                                 <i class="fas fa-car mb-2"></i><br>
                                                 经济型
                                             </label>
+                                            <div class="invalid-feedback">
+                                                请选择用车类型
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -59,14 +73,20 @@
                         <div class="row mb-4">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">出发地</label>
+                                    <label class="form-label">出发地 <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="pickup_location" required>
+                                    <div class="invalid-feedback">
+                                        请输入出发地
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">目的地</label>
+                                    <label class="form-label">目的地 <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="destination" required>
+                                    <div class="invalid-feedback">
+                                        请输入目的地
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -75,14 +95,20 @@
                         <div class="row mb-4">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">出发日期</label>
-                                    <input type="date" class="form-control" name="pickup_date" required>
+                                    <label class="form-label">出发日期 <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" name="pickup_date" required min="{{ today|date:'Y-m-d' }}">
+                                    <div class="invalid-feedback">
+                                        请选择出发日期
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">出发时间</label>
+                                    <label class="form-label">出发时间 <span class="text-danger">*</span></label>
                                     <input type="time" class="form-control" name="pickup_time" required>
+                                    <div class="invalid-feedback">
+                                        请选择出发时间
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +117,7 @@
                         <div class="row mb-4">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">乘客人数</label>
+                                    <label class="form-label">乘客人数 <span class="text-danger">*</span></label>
                                     <select class="form-select" name="passengers" required>
                                         <option value="">请选择</option>
                                         <option value="1-2">1-2人</option>
@@ -99,11 +125,14 @@
                                         <option value="5-6">5-6人</option>
                                         <option value="7+">7人以上</option>
                                     </select>
+                                    <div class="invalid-feedback">
+                                        请选择乘客人数
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">行李数量</label>
+                                    <label class="form-label">行李数量 <span class="text-danger">*</span></label>
                                     <select class="form-select" name="luggage" required>
                                         <option value="">请选择</option>
                                         <option value="0">无行李</option>
@@ -111,22 +140,9 @@
                                         <option value="3-4">3-4件</option>
                                         <option value="5+">5件以上</option>
                                     </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 联系信息 -->
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">联系人姓名</label>
-                                    <input type="text" class="form-control" name="contact_name" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">联系电话</label>
-                                    <input type="tel" class="form-control" name="contact_phone" required>
+                                    <div class="invalid-feedback">
+                                        请选择行李数量
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +155,9 @@
 
                         <!-- 提交按钮 -->
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg">提交预订</button>
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-check me-2"></i>提交预订
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -171,69 +189,61 @@
                     </ul>
                 </div>
             </div>
-
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h3 class="card-title">需要帮助？</h3>
-                    <p class="card-text">如果您在预订过程中需要帮助，请随时联系我们的客服团队。</p>
-                    <div class="d-grid">
-                        <a href="{% url 'contact' %}" class="btn btn-outline-primary">联系客服</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
 
-<!-- 价格估算模态框 -->
-<div class="modal fade" id="priceEstimateModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">价格估算</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <div class="price-details">
-                    <!-- 价格详情将通过JavaScript动态填充 -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 {% endblock %}
 
 {% block extra_js %}
 <script>
+document.addEventListener('DOMContentLoaded', function() {
     // 表单验证
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('form');
-        form.addEventListener('submit', function(event) {
-            if (!form.checkValidity()) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-        });
-
-        // 实时价格估算
-        const carTypeInputs = document.querySelectorAll('input[name="car_type"]');
-        const pickupLocation = document.querySelector('input[name="pickup_location"]');
-        const destination = document.querySelector('input[name="destination"]');
-
-        function updatePriceEstimate() {
-            const selectedCarType = document.querySelector('input[name="car_type"]:checked');
-            if (selectedCarType && pickupLocation.value && destination.value) {
-                // 这里可以添加调用价格估算API的逻辑
-                console.log('Calculating price...');
+    const form = document.querySelector('form');
+    
+    form.addEventListener('submit', function(event) {
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            // 显示第一个错误字段的反馈
+            const firstInvalidField = form.querySelector(':invalid');
+            if (firstInvalidField) {
+                firstInvalidField.focus();
             }
         }
-
-        carTypeInputs.forEach(input => {
-            input.addEventListener('change', updatePriceEstimate);
-        });
-        pickupLocation.addEventListener('change', updatePriceEstimate);
-        destination.addEventListener('change', updatePriceEstimate);
+        
+        form.classList.add('was-validated');
+        
+        // 检查是否选择了车型
+        const carType = form.querySelector('input[name="car_type"]:checked');
+        if (!carType) {
+            event.preventDefault();
+            alert('请选择用车类型');
+            return;
+        }
+        
+        // 检查日期时间是否合理
+        const pickupDate = form.querySelector('input[name="pickup_date"]').value;
+        const pickupTime = form.querySelector('input[name="pickup_time"]').value;
+        
+        if (pickupDate && pickupTime) {
+            const pickupDateTime = new Date(pickupDate + 'T' + pickupTime);
+            const now = new Date();
+            const twoHoursFromNow = new Date(now.getTime() + (2 * 60 * 60 * 1000));
+            
+            if (pickupDateTime <= twoHoursFromNow) {
+                event.preventDefault();
+                alert('请至少提前2小时预订用车');
+                return;
+            }
+        }
     });
+    
+    // 设置日期选择器的最小值为今天
+    const dateInput = document.querySelector('input[name="pickup_date"]');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+});
 </script>
 {% endblock %} 
