@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans '隐私政策' %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="text-center">{% trans '隐私政策' %}</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <section class="mb-5">
+                        <h3 class="mb-4">{% trans '信息收集' %}</h3>
+                        <p>{% trans '我们收集的信息包括但不限于：' %}</p>
+                        <ul>
+                            <li>{% trans '基本个人信息（姓名、联系方式等）' %}</li>
+                            <li>{% trans '账户信息（用户名、密码等）' %}</li>
+                            <li>{% trans '订单信息（预订记录、支付信息等）' %}</li>
+                            <li>{% trans '设备信息（IP地址、浏览器类型等）' %}</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-5">
+                        <h3 class="mb-4">{% trans '信息使用' %}</h3>
+                        <p>{% trans '我们使用收集的信息用于：' %}</p>
+                        <ul>
+                            <li>{% trans '提供、维护和改进我们的服务' %}</li>
+                            <li>{% trans '处理您的预订和支付' %}</li>
+                            <li>{% trans '发送服务通知和更新' %}</li>
+                            <li>{% trans '防止欺诈和提升安全性' %}</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-5">
+                        <h3 class="mb-4">{% trans '信息保护' %}</h3>
+                        <p>{% trans '我们采取以下措施保护您的信息：' %}</p>
+                        <ul>
+                            <li>{% trans '使用加密技术保护数据传输' %}</li>
+                            <li>{% trans '实施访问控制措施' %}</li>
+                            <li>{% trans '定期安全审计' %}</li>
+                            <li>{% trans '员工保密培训' %}</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-5">
+                        <h3 class="mb-4">{% trans '信息共享' %}</h3>
+                        <p>{% trans '我们不会出售您的个人信息。仅在以下情况下可能共享信息：' %}</p>
+                        <ul>
+                            <li>{% trans '经您明确同意' %}</li>
+                            <li>{% trans '为完成服务必需（如与合作的司机共享行程信息）' %}</li>
+                            <li>{% trans '法律要求' %}</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-5">
+                        <h3 class="mb-4">{% trans 'Cookie使用' %}</h3>
+                        <p>{% trans '我们使用Cookie来：' %}</p>
+                        <ul>
+                            <li>{% trans '记住您的登录状态' %}</li>
+                            <li>{% trans '分析网站使用情况' %}</li>
+                            <li>{% trans '优化用户体验' %}</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3 class="mb-4">{% trans '隐私政策更新' %}</h3>
+                        <p>{% trans '我们可能会不时更新本隐私政策。更新后的政策将在网站上公布，并在必要时通知您重大变更。' %}</p>
+                    </section>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <p class="text-muted">{% trans '最后更新时间：2024年1月' %}</p>
+                <p>{% trans '如有任何问题，请' %} <a href="{% url 'contact' %}">{% trans '联系我们' %}</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

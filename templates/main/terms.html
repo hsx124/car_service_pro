@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans '服务条款' %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="text-center">{% trans '服务条款' %}</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <section class="mb-5">
+                        <h3 class="mb-4">{% trans '服务说明' %}</h3>
+                        <p>{% trans '我们提供专业的用车服务，包括但不限于：' %}</p>
+                        <ul>
+                            <li>{% trans '商务用车服务' %}</li>
+                            <li>{% trans '机场接送服务' %}</li>
+                            <li>{% trans '长途包车服务' %}</li>
+                            <li>{% trans '旅游用车服务' %}</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-5">
+                        <h3 class="mb-4">{% trans '用户责任' %}</h3>
+                        <p>{% trans '用户在使用我们的服务时应：' %}</p>
+                        <ul>
+                            <li>{% trans '提供真实、准确的个人信息' %}</li>
+                            <li>{% trans '遵守预约时间，按时到达上车地点' %}</li>
+                            <li>{% trans '爱护车辆，遵守乘车规则' %}</li>
+                            <li>{% trans '不得从事任何违法活动' %}</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-5">
+                        <h3 class="mb-4">{% trans '预订和取消' %}</h3>
+                        <ul>
+                            <li>{% trans '预订需提前24小时进行' %}</li>
+                            <li>{% trans '取消预订需提前12小时通知' %}</li>
+                            <li>{% trans '临时取消可能产生费用' %}</li>
+                            <li>{% trans '特殊情况下的取消政策以具体通知为准' %}</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-5">
+                        <h3 class="mb-4">{% trans '支付条款' %}</h3>
+                        <ul>
+                            <li>{% trans '服务费用需提前支付' %}</li>
+                            <li>{% trans '支持多种支付方式' %}</li>
+                            <li>{% trans '额外服务费用需另行支付' %}</li>
+                            <li>{% trans '发票开具需在服务完成后申请' %}</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-5">
+                        <h3 class="mb-4">{% trans '安全和保险' %}</h3>
+                        <ul>
+                            <li>{% trans '所有车辆均投保相应险种' %}</li>
+                            <li>{% trans '乘客需遵守安全乘车规定' %}</li>
+                            <li>{% trans '意外情况下的责任划分按保险条款执行' %}</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3 class="mb-4">{% trans '条款更新' %}</h3>
+                        <p>{% trans '我们保留随时更新这些条款的权利。重大更新将通过网站公告或电子邮件通知用户。' %}</p>
+                    </section>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <p class="text-muted">{% trans '最后更新时间：2024年1月' %}</p>
+                <p>{% trans '如有任何问题，请' %} <a href="{% url 'contact' %}">{% trans '联系我们' %}</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

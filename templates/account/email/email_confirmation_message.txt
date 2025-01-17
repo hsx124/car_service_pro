@@ -1,0 +1,12 @@
+{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}您好！
+
+您收到这封邮件是因为用户 {{ user_display }} 在 {{ site_name }} 使用此邮箱地址注册了账号。
+
+请点击以下链接确认这是您的邮箱地址：
+{{ activate_url }}
+
+如果您没有注册此账号，请忽略此邮件。
+
+感谢您的使用！
+{{ site_name }}
+{% endblocktrans %}{% endautoescape %} 
