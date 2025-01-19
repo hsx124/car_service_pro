@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans '联系我们' %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="text-center">{% trans '联系我们' %}</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    {% if messages %}
+    <div class="row mb-4">
+        <div class="col-12">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row g-4">
+        <!-- 联系方式 -->
+        <div class="col-lg-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="bi bi-headset text-primary me-2"></i>
+                        {% trans '客服热线' %}
+                    </h3>
+                    <p class="lead">400-123-4567</p>
+                    <p class="text-muted">{% trans '7x24小时服务' %}</p>
+                    
+                    <h3 class="card-title mb-4 mt-5">
+                        <i class="bi bi-envelope text-primary me-2"></i>
+                        {% trans '电子邮箱' %}
+                    </h3>
+                    <p>313300497@qq.com</p>
+                    
+                    <h3 class="card-title mb-4 mt-5">
+                        <i class="bi bi-geo-alt text-primary me-2"></i>
+                        {% trans '公司地址' %}
+                    </h3>
+                    <p>{% trans '東京都渋谷区xxxビル' %}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 联系表单 -->
+        <div class="col-lg-8">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="bi bi-chat-dots text-primary me-2"></i>
+                        {% trans '在线留言' %}
+                    </h3>
+                    <form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">{% trans '姓名' %} *</label>
+                                <input type="text" class="form-control" id="name" name="name" 
+                                       required minlength="2" maxlength="50" pattern="[^0-9<>[\]{}]*">
+                                <div class="invalid-feedback">
+                                    {% trans '请输入有效的姓名（2-50个字符，不能包含数字和特殊字符）' %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">{% trans '邮箱' %} *</label>
+                                <input type="email" class="form-control" id="email" name="email" 
+                                       required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                <div class="invalid-feedback">
+                                    {% trans '请输入有效的邮箱地址' %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">{% trans '电话' %} *</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" 
+                                       required pattern="^1[3-9]\d{9}$">
+                                <div class="invalid-feedback">
+                                    {% trans '请输入有效的11位手机号码' %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="subject" class="form-label">{% trans '主题' %} *</label>
+                                <select class="form-select" id="subject" name="subject" required>
+                                    <option value="">{% trans '请选择' %}</option>
+                                    <option value="booking">{% trans '预订咨询' %}</option>
+                                    <option value="service">{% trans '服务反馈' %}</option>
+                                    <option value="complaint">{% trans '投诉建议' %}</option>
+                                    <option value="cooperation">{% trans '商务合作' %}</option>
+                                    <option value="other">{% trans '其他' %}</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    {% trans '请选择留言主题' %}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="message" class="form-label">{% trans '留言内容' %} *</label>
+                                <textarea class="form-control" id="message" name="message" 
+                                          rows="5" required minlength="10" maxlength="1000"></textarea>
+                                <div class="invalid-feedback">
+                                    {% trans '请输入10-1000字的留言内容' %}
+                                </div>
+                                <div class="form-text">
+                                    <span id="messageLength">0</span>/1000
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary" id="submitBtn">
+                                    <i class="bi bi-send me-2"></i>
+                                    {% trans '提交留言' %}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 地图 -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="bi bi-map text-primary me-2"></i>
+                        {% trans '公司位置' %}
+                    </h3>
+                    <div class="ratio ratio-21x9">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7479754683745!2d139.70071937602543!3d35.65858017271997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca9c5e29e35%3A0xf0d5f6295e590e06!2z5riL6LC35Yy6!5e0!3m2!1sja!2sjp!4v1705520547572!5m2!1sja!2sjp" 
+                                style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    // 表单验证
+    (function () {
+        'use strict'
+        
+        // 获取所有表单
+        var forms = document.querySelectorAll('.needs-validation')
+        
+        // 字数统计
+        var messageTextarea = document.getElementById('message')
+        var messageLengthSpan = document.getElementById('messageLength')
+        var submitBtn = document.getElementById('submitBtn')
+        
+        messageTextarea.addEventListener('input', function() {
+            var length = this.value.length
+            messageLengthSpan.textContent = length
+            
+            if (length > 1000) {
+                this.value = this.value.substring(0, 1000)
+                messageLengthSpan.textContent = 1000
+            }
+            
+            // 更新提交按钮状态
+            submitBtn.disabled = length < 10 || length > 1000
+        })
+        
+        // 表单验证
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+                
+                // 实时验证
+                var inputs = form.querySelectorAll('input, textarea, select')
+                inputs.forEach(function(input) {
+                    input.addEventListener('input', function() {
+                        if (input.checkValidity()) {
+                            input.classList.remove('is-invalid')
+                            input.classList.add('is-valid')
+                        } else {
+                            input.classList.remove('is-valid')
+                            input.classList.add('is-invalid')
+                        }
+                    })
+                })
+            })
+    })()
+</script>
+{% endblock %}
+{% endblock %} 

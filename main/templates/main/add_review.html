@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans '添加评价' %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-4">{% trans '为您的用车服务评价' %}</h1>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">{% trans '预订详情' %} #{{ booking.id }}</h5>
+                    <div class="booking-details mb-4">
+                        <p><strong>{% trans '上车时间' %}:</strong> {{ booking.pickup_time|date:"Y-m-d H:i" }}</p>
+                        <p><strong>{% trans '上车地点' %}:</strong> {{ booking.pickup_location }}</p>
+                        <p><strong>{% trans '目的地' %}:</strong> {{ booking.destination }}</p>
+                        <p><strong>{% trans '车型' %}:</strong> {{ booking.vehicle.get_type_display }}</p>
+                        <p><strong>{% trans '司机' %}:</strong> {{ booking.driver.user.get_full_name }}</p>
+                    </div>
+
+                    <form method="post" class="review-form">
+                        {% csrf_token %}
+                        
+                        <div class="form-group mb-4">
+                            <label class="form-label">{% trans '您的评分' %} <span class="text-danger">*</span></label>
+                            <div class="rating">
+                                <input type="radio" id="star5" name="rating" value="5" required>
+                                <label for="star5" title="5星">★</label>
+                                <input type="radio" id="star4" name="rating" value="4">
+                                <label for="star4" title="4星">★</label>
+                                <input type="radio" id="star3" name="rating" value="3">
+                                <label for="star3" title="3星">★</label>
+                                <input type="radio" id="star2" name="rating" value="2">
+                                <label for="star2" title="2星">★</label>
+                                <input type="radio" id="star1" name="rating" value="1">
+                                <label for="star1" title="1星">★</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="comment" class="form-label">{% trans '评价内容' %} <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="comment" name="comment" rows="4" required></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">{% trans '提交评价' %}</button>
+                            <a href="{% url 'my_bookings' %}" class="btn btn-secondary ms-2">{% trans '返回' %}</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 30px;
+    color: #ddd;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.rating label:hover,
+.rating label:hover ~ label,
+.rating input:checked ~ label {
+    color: #ffd700;
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #ffd700;
+}
+
+.rating input:checked ~ label {
+    color: #ffd700;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 防止重复提交
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        submitButton.innerHTML = '{% trans "提交中..." %}';
+    });
+});
+</script>
+{% endblock %} 

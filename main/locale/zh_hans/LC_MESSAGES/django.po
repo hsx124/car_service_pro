@@ -1,0 +1,1708 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-19 18:17+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+#: .\main\admin.py:16 .\main\models.py:158 .\templates\main\booking.html:238
+#: .\templates\main\service_area.html:76
+msgid "基础价格"
+msgstr ""
+
+#: .\main\admin.py:19
+msgid "附加费用"
+msgstr ""
+
+#: .\main\admin.py:60
+msgid "确认选中的预订"
+msgstr ""
+
+#: .\main\admin.py:96
+msgid "标记为已处理"
+msgstr ""
+
+#: .\main\models.py:11 .\main\models.py:54 .\main\models.py:254
+#: .\templates\main\booking.html:74 .\templates\main\vehicles.html:99
+msgid "经济型"
+msgstr ""
+
+#: .\main\models.py:12 .\main\models.py:55 .\main\models.py:255
+#: .\templates\main\booking.html:85 .\templates\main\vehicles.html:100
+msgid "商务型"
+msgstr ""
+
+#: .\main\models.py:13 .\main\models.py:56 .\main\models.py:256
+#: .\templates\main\booking.html:96 .\templates\main\vehicles.html:101
+msgid "豪华型"
+msgstr ""
+
+#: .\main\models.py:17
+msgid "可用"
+msgstr ""
+
+#: .\main\models.py:18
+msgid "使用中"
+msgstr ""
+
+#: .\main\models.py:19
+msgid "维护中"
+msgstr ""
+
+#: .\main\models.py:22 .\main\models.py:266 .\templates\main\add_review.html:20
+#: .\templates\main\vehicles.html:96 .\templates\main\vehicles.html:173
+msgid "车型"
+msgstr ""
+
+#: .\main\models.py:23
+msgid "品牌"
+msgstr ""
+
+#: .\main\models.py:24
+msgid "型号"
+msgstr ""
+
+#: .\main\models.py:25 .\templates\main\vehicles.html:142
+#: .\templates\main\vehicles.html:176
+msgid "车牌号"
+msgstr ""
+
+#: .\main\models.py:26 .\templates\main\vehicles.html:105
+#: .\templates\main\vehicles.html:175
+msgid "座位数"
+msgstr ""
+
+#: .\main\models.py:27 .\templates\main\vehicles.html:141
+#: .\templates\main\vehicles.html:174
+msgid "年份"
+msgstr ""
+
+#: .\main\models.py:28 .\main\models.py:115 .\templates\main\vehicles.html:177
+msgid "状态"
+msgstr ""
+
+#: .\main\models.py:29
+msgid "特点"
+msgstr ""
+
+#: .\main\models.py:30
+msgid "图片"
+msgstr ""
+
+#: .\main\models.py:31 .\main\models.py:71 .\main\models.py:118
+#: .\main\models.py:143 .\main\models.py:164 .\main\models.py:191
+#: .\main\models.py:210 .\main\models.py:235 .\main\models.py:275
+msgid "创建时间"
+msgstr ""
+
+#: .\main\models.py:32 .\main\models.py:72 .\main\models.py:119
+#: .\main\models.py:144 .\main\models.py:165 .\main\models.py:192
+#: .\main\models.py:236 .\main\models.py:276
+msgid "更新时间"
+msgstr ""
+
+#: .\main\models.py:35 .\main\models.py:36
+msgid "车辆"
+msgstr ""
+
+#: .\main\models.py:44 .\templates\main\drivers.html:71
+msgid "中文"
+msgstr ""
+
+#: .\main\models.py:45 .\templates\main\drivers.html:72
+msgid "日语"
+msgstr ""
+
+#: .\main\models.py:46 .\templates\main\drivers.html:73
+msgid "英语"
+msgstr ""
+
+#: .\main\models.py:47 .\templates\main\drivers.html:74
+msgid "中文和日语"
+msgstr ""
+
+#: .\main\models.py:48 .\templates\main\drivers.html:75
+msgid "中文和英语"
+msgstr ""
+
+#: .\main\models.py:49 .\templates\main\drivers.html:76
+msgid "日语和英语"
+msgstr ""
+
+#: .\main\models.py:50 .\templates\main\drivers.html:77
+msgid "中文、日语和英语"
+msgstr ""
+
+#: .\main\models.py:57
+msgid "全部类型"
+msgstr ""
+
+#: .\main\models.py:61
+msgid "驾驶证号"
+msgstr ""
+
+#: .\main\models.py:62 .\templates\main\drivers.html:17
+#: .\templates\main\drivers.html:65
+msgid "驾龄"
+msgstr ""
+
+#: .\main\models.py:63
+msgid "联系电话"
+msgstr ""
+
+#: .\main\models.py:64 .\main\models.py:227 .\templates\main\profile.html:77
+msgid "地址"
+msgstr ""
+
+#: .\main\models.py:65
+msgid "照片"
+msgstr ""
+
+#: .\main\models.py:66 .\main\models.py:226 .\templates\main\profile.html:82
+msgid "个人简介"
+msgstr ""
+
+#: .\main\models.py:67 .\main\models.py:140
+msgid "评分"
+msgstr ""
+
+#: .\main\models.py:68
+msgid "是否可用"
+msgstr ""
+
+#: .\main\models.py:69 .\templates\base.html:1113
+#: .\templates\main\drivers.html:70
+msgid "语言"
+msgstr ""
+
+#: .\main\models.py:70
+msgid "擅长车型"
+msgstr ""
+
+#: .\main\models.py:75 .\main\models.py:76 .\templates\main\add_review.html:21
+#: .\templates\main\my_bookings.html:99
+msgid "司机"
+msgstr ""
+
+#: .\main\models.py:100 .\templates\main\my_bookings.html:50
+msgid "待确认"
+msgstr ""
+
+#: .\main\models.py:101 .\templates\main\my_bookings.html:53
+msgid "已确认"
+msgstr ""
+
+#: .\main\models.py:102 .\templates\main\my_bookings.html:56
+msgid "进行中"
+msgstr ""
+
+#: .\main\models.py:103 .\templates\main\my_bookings.html:59
+msgid "已完成"
+msgstr ""
+
+#: .\main\models.py:104 .\templates\main\my_bookings.html:62
+msgid "已取消"
+msgstr ""
+
+#: .\main\models.py:110 .\templates\main\add_review.html:18
+msgid "上车地点"
+msgstr ""
+
+#: .\main\models.py:111 .\templates\main\add_review.html:19
+#: .\templates\main\booking.html:120
+msgid "目的地"
+msgstr ""
+
+#: .\main\models.py:112 .\templates\main\add_review.html:17
+msgid "上车时间"
+msgstr ""
+
+#: .\main\models.py:113 .\templates\main\booking.html:158
+msgid "乘客人数"
+msgstr ""
+
+#: .\main\models.py:114 .\templates\main\booking.html:173
+msgid "行李数量"
+msgstr ""
+
+#: .\main\models.py:116
+msgid "价格"
+msgstr ""
+
+#: .\main\models.py:117
+msgid "特殊要求"
+msgstr ""
+
+#: .\main\models.py:122 .\main\models.py:123
+msgid "预订"
+msgstr ""
+
+#: .\main\models.py:142 .\templates\main\add_review.html:44
+msgid "评价内容"
+msgstr ""
+
+#: .\main\models.py:147 .\main\models.py:148
+msgid "评价"
+msgstr ""
+
+#: .\main\models.py:156
+msgid "区域名称"
+msgstr ""
+
+#: .\main\models.py:157
+msgid "区域描述"
+msgstr ""
+
+#: .\main\models.py:159
+msgid "区域坐标"
+msgstr ""
+
+#: .\main\models.py:159
+msgid "格式：[[lat1, lng1], [lat2, lng2], ...]"
+msgstr ""
+
+#: .\main\models.py:160
+msgid "中心纬度"
+msgstr ""
+
+#: .\main\models.py:161
+msgid "中心经度"
+msgstr ""
+
+#: .\main\models.py:162
+msgid "缩放级别"
+msgstr ""
+
+#: .\main\models.py:163 .\main\models.py:190 .\main\models.py:274
+msgid "是否启用"
+msgstr ""
+
+#: .\main\models.py:168 .\main\models.py:169 .\templates\base.html:1037
+msgid "服务区域"
+msgstr ""
+
+#: .\main\models.py:186
+msgid "问题"
+msgstr ""
+
+#: .\main\models.py:187
+msgid "答案"
+msgstr ""
+
+#: .\main\models.py:188
+msgid "分类"
+msgstr ""
+
+#: .\main\models.py:189
+msgid "排序"
+msgstr ""
+
+#: .\main\models.py:195 .\main\models.py:196 .\templates\base.html:1055
+#: .\templates\main\faq.html:5
+msgid "常见问题"
+msgstr ""
+
+#: .\main\models.py:204 .\templates\main\contact.html:67
+msgid "姓名"
+msgstr ""
+
+#: .\main\models.py:205 .\templates\main\contact.html:75
+msgid "邮箱"
+msgstr ""
+
+#: .\main\models.py:206 .\templates\main\contact.html:83
+msgid "电话"
+msgstr ""
+
+#: .\main\models.py:207 .\templates\main\contact.html:91
+msgid "主题"
+msgstr ""
+
+#: .\main\models.py:208
+msgid "消息内容"
+msgstr ""
+
+#: .\main\models.py:209
+msgid "是否处理"
+msgstr ""
+
+#: .\main\models.py:211
+msgid "处理时间"
+msgstr ""
+
+#: .\main\models.py:214 .\main\models.py:215
+msgid "联系信息"
+msgstr ""
+
+#: .\main\models.py:224 .\templates\main\profile.html:72
+msgid "手机号码"
+msgstr ""
+
+#: .\main\models.py:225
+msgid "头像"
+msgstr ""
+
+#: .\main\models.py:229 .\templates\main\profile.html:87
+msgid "偏好语言"
+msgstr ""
+
+#: .\main\models.py:234
+msgid "启用通知"
+msgstr ""
+
+#: .\main\models.py:239 .\main\models.py:240
+msgid "用户档案"
+msgstr ""
+
+#: .\main\models.py:260
+msgid "平时"
+msgstr ""
+
+#: .\main\models.py:261
+msgid "高峰"
+msgstr ""
+
+#: .\main\models.py:262
+msgid "夜间"
+msgstr ""
+
+#: .\main\models.py:263
+msgid "节假日"
+msgstr ""
+
+#: .\main\models.py:267
+msgid "时段"
+msgstr ""
+
+#: .\main\models.py:268
+msgid "起步价"
+msgstr ""
+
+#: .\main\models.py:269
+msgid "每公里价格"
+msgstr ""
+
+#: .\main\models.py:270
+msgid "最小里程(公里)"
+msgstr ""
+
+#: .\main\models.py:271
+msgid "等待费用(每分钟)"
+msgstr ""
+
+#: .\main\models.py:272
+msgid "夜间服务费"
+msgstr ""
+
+#: .\main\models.py:273
+msgid "节假日加价率"
+msgstr ""
+
+#: .\main\models.py:279 .\main\models.py:280
+msgid "价格规则"
+msgstr ""
+
+#: .\main\utils.py:9
+msgid "您的用车预订已确认"
+msgstr ""
+
+#: .\main\utils.py:10
+#, python-format
+msgid ""
+"尊敬的 %(name)s：\n"
+"\n"
+"您的预订已确认！以下是预订详情：\n"
+"\n"
+"预订编号：#%(booking_id)s\n"
+"上车地点：%(pickup_location)s\n"
+"目的地：%(destination)s\n"
+"上车时间：%(pickup_time)s\n"
+"车型：%(vehicle)s\n"
+"司机：%(driver)s\n"
+"价格：￥%(price)s\n"
+"\n"
+"如有任何问题，请随时联系我们的客服。\n"
+"\n"
+"祝您用车愉快！\n"
+msgstr ""
+
+#: .\main\views.py:82 .\main\views.py:296
+msgid "请填写所有必填字段。"
+msgstr ""
+
+#: .\main\views.py:94
+msgid "请至少提前2小时预订用车。"
+msgstr ""
+
+#: .\main\views.py:105
+msgid "抱歉，当前没有可用的车辆，请稍后重试。"
+msgstr ""
+
+#: .\main\views.py:116
+msgid "抱歉，当前没有可用的司机，请稍后重试。"
+msgstr ""
+
+#: .\main\views.py:154 .\main\views.py:159
+msgid "抱歉，当前无法计算价格，请联系客服。"
+msgstr ""
+
+#: .\main\views.py:176
+msgid "乘客人数或行李数量格式不正确。"
+msgstr ""
+
+#: .\main\views.py:204
+msgid "预订成功！我们会尽快确认您的订单。"
+msgstr ""
+
+#: .\main\views.py:209
+msgid "预订失败，请稍后重试。"
+msgstr ""
+
+#: .\main\views.py:219
+msgid "您的用车预订已提交"
+msgstr ""
+
+#: .\main\views.py:285
+msgid "提交过于频繁，请稍后再试。"
+msgstr ""
+
+#: .\main\views.py:302
+msgid "您的留言包含不适当的内容。"
+msgstr ""
+
+#: .\main\views.py:345
+msgid "感谢您的留言"
+msgstr ""
+
+#: .\main\views.py:372
+msgid "您的留言已成功提交，我们会尽快与您联系。"
+msgstr ""
+
+#: .\main\views.py:375
+msgid "提交失败，请稍后重试或直接联系我们。"
+msgstr ""
+
+#: .\main\views.py:412
+msgid "个人资料已更新。"
+msgstr ""
+
+#: .\main\views.py:459
+msgid "只能取消待确认或已确认的预订。"
+msgstr ""
+
+#: .\main\views.py:477
+msgid "预订已成功取消。"
+msgstr ""
+
+#: .\main\views.py:480
+msgid "预订不存在。"
+msgstr ""
+
+#: .\main\views.py:486
+msgid "您的预订已取消"
+msgstr ""
+
+#: .\main\views.py:653
+msgid "只能对已完成的预订进行评价。"
+msgstr ""
+
+#: .\main\views.py:657
+msgid "该预订已经评价过了。"
+msgstr ""
+
+#: .\main\views.py:665
+msgid "请填写评分和评价内容。"
+msgstr ""
+
+#: .\main\views.py:674
+msgid "评价提交成功，感谢您的反馈！"
+msgstr ""
+
+#: .\main\views.py:679
+msgid "评价提交失败，请稍后重试。"
+msgstr ""
+
+#: .\templates\account\email\email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"您好！\n"
+"\n"
+"您收到这封邮件是因为用户 %(user_display)s 在 %(site_name)s 使用此邮箱地址注册"
+"了账号。\n"
+"\n"
+"请点击以下链接确认这是您的邮箱地址：\n"
+"%(activate_url)s\n"
+"\n"
+"如果您没有注册此账号，请忽略此邮件。\n"
+"\n"
+"感谢您的使用！\n"
+"%(site_name)s\n"
+msgstr ""
+
+#: .\templates\account\email\email_confirmation_subject.txt:3
+msgid "请确认您的邮箱地址"
+msgstr ""
+
+#: .\templates\account\email_confirm.html:14
+msgid "确认邮箱"
+msgstr ""
+
+#: .\templates\account\email_confirm.html:19
+#, python-format
+msgid ""
+"\n"
+"                                请确认邮箱地址 <strong>%(email)s</strong> 是"
+"否属于用户 %(user_display)s。\n"
+"                                "
+msgstr ""
+
+#: .\templates\account\email_confirm.html:27
+msgid "确认"
+msgstr ""
+
+#: .\templates\account\email_confirm.html:33
+#, python-format
+msgid ""
+"\n"
+"                                此邮箱确认链接已失效或已被使用。请<a "
+"href=\"%(email_url)s\" class=\"alert-link\">重新发送确认邮件</a>。\n"
+"                                "
+msgstr ""
+
+#: .\templates\account\login.html:15 .\templates\account\login.html:33
+#: .\templates\base.html:1094
+msgid "登录"
+msgstr ""
+
+#: .\templates\account\login.html:39
+msgid "还没有账号?"
+msgstr ""
+
+#: .\templates\account\login.html:40
+msgid "立即注册"
+msgstr ""
+
+#: .\templates\account\login.html:43
+msgid "忘记密码?"
+msgstr ""
+
+#: .\templates\account\logout.html:5 .\templates\account\logout.html:13
+msgid "退出登录"
+msgstr ""
+
+#: .\templates\account\logout.html:14
+msgid "您确定要退出登录吗？"
+msgstr ""
+
+#: .\templates\account\logout.html:23
+msgid "确认退出"
+msgstr ""
+
+#: .\templates\account\logout.html:26
+#: .\templates\account\verification_sent.html:46
+msgid "返回首页"
+msgstr ""
+
+#: .\templates\account\signup.html:14 .\templates\account\signup.html:32
+#: .\templates\base.html:1100
+msgid "注册"
+msgstr ""
+
+#: .\templates\account\signup.html:38
+msgid "已有账号?"
+msgstr ""
+
+#: .\templates\account\signup.html:39
+msgid "立即登录"
+msgstr ""
+
+#: .\templates\account\signup.html:45
+msgid "注册即表示您同意我们的"
+msgstr ""
+
+#: .\templates\account\signup.html:46 .\templates\base.html:1229
+#: .\templates\main\terms.html:5 .\templates\main\terms.html:10
+msgid "服务条款"
+msgstr ""
+
+#: .\templates\account\signup.html:47
+msgid "和"
+msgstr ""
+
+#: .\templates\account\signup.html:48 .\templates\base.html:1227
+#: .\templates\main\privacy.html:5 .\templates\main\privacy.html:10
+#: .\templates\main\safety.html:153
+msgid "隐私政策"
+msgstr ""
+
+#: .\templates\account\verification_sent.html:16
+msgid "验证邮件已发送"
+msgstr ""
+
+#: .\templates\account\verification_sent.html:20
+msgid ""
+"\n"
+"                                我们已向您的邮箱发送了一封验证邮件。请查收邮"
+"件并点击其中的确认链接来完成注册。\n"
+"                                "
+msgstr ""
+
+#: .\templates\base.html:15 .\templates\base.html:1272
+msgid "专业用车服务"
+msgstr ""
+
+#: .\templates\base.html:1003
+msgid "优良接送专业用车"
+msgstr ""
+
+#: .\templates\base.html:1019 .\templates\main\drivers.html:105
+msgid "预订用车"
+msgstr ""
+
+#: .\templates\base.html:1025
+msgid "车型介绍"
+msgstr ""
+
+#: .\templates\base.html:1031
+msgid "司机团队"
+msgstr ""
+
+#: .\templates\base.html:1043 .\templates\main\about.html:37
+#: .\templates\main\safety.html:5 .\templates\main\safety.html:10
+msgid "安全保障"
+msgstr ""
+
+#: .\templates\base.html:1049 .\templates\base.html:1223
+#: .\templates\main\about.html:5 .\templates\main\about.html:10
+msgid "关于我们"
+msgstr ""
+
+#: .\templates\base.html:1076 .\templates\main\my_bookings.html:27
+#: .\templates\main\profile.html:6 .\templates\main\profile.html:35
+msgid "个人资料"
+msgstr ""
+
+#: .\templates\base.html:1078 .\templates\main\my_bookings.html:5
+#: .\templates\main\my_bookings.html:30 .\templates\main\profile.html:38
+msgid "我的预订"
+msgstr ""
+
+#: .\templates\base.html:1084
+msgid "退出"
+msgstr ""
+
+#: .\templates\base.html:1209 .\templates\base.html:1225
+#: .\templates\main\about.html:115 .\templates\main\about.html:119
+#: .\templates\main\contact.html:5 .\templates\main\contact.html:10
+#: .\templates\main\faq.html:86 .\templates\main\privacy.html:81
+#: .\templates\main\terms.html:79
+msgid "联系我们"
+msgstr ""
+
+#: .\templates\base.html:1211
+msgid "客服热线：400-123-4567"
+msgstr ""
+
+#: .\templates\base.html:1213
+msgid "邮箱：service@example.com"
+msgstr ""
+
+#: .\templates\base.html:1219
+msgid "快速链接"
+msgstr ""
+
+#: .\templates\base.html:1237
+msgid "关注我们"
+msgstr ""
+
+#: .\templates\base.html:1262
+msgid "微信公众号：专业用车服务"
+msgstr ""
+
+#: .\templates\base.html:1272
+msgid "版权所有"
+msgstr ""
+
+#: .\templates\main\about.html:18
+msgid "公司简介"
+msgstr ""
+
+#: .\templates\main\about.html:19
+msgid "专业用车服务平台，致力于为客户提供高品质的用车体验。"
+msgstr ""
+
+#: .\templates\main\about.html:20
+msgid ""
+"成立于2020年，我们始终坚持\"安全第一、服务至上\"的经营理念，通过不断创新和优"
+"化，为用户提供便捷、舒适、安全的用车服务。"
+msgstr ""
+
+#: .\templates\main\about.html:21
+msgid ""
+"我们拥有专业的运营团队和优秀的司机队伍，配备多种类型的高端车辆，可满足商务、"
+"旅游、机场接送等多样化的用车需求。"
+msgstr ""
+
+#: .\templates\main\about.html:31
+msgid "核心优势"
+msgstr ""
+
+#: .\templates\main\about.html:38
+msgid "全方位的安全管理体系"
+msgstr ""
+
+#: .\templates\main\about.html:46
+msgid "专业团队"
+msgstr ""
+
+#: .\templates\main\about.html:47
+msgid "经验丰富的司机团队"
+msgstr ""
+
+#: .\templates\main\about.html:55
+msgid "优质车辆"
+msgstr ""
+
+#: .\templates\main\about.html:56
+msgid "高端舒适的车型选择"
+msgstr ""
+
+#: .\templates\main\about.html:64
+msgid "贴心服务"
+msgstr ""
+
+#: .\templates\main\about.html:65
+msgid "24小时专业客服支持"
+msgstr ""
+
+#: .\templates\main\about.html:74
+msgid "发展历程"
+msgstr ""
+
+#: .\templates\main\about.html:81
+msgid "公司成立"
+msgstr ""
+
+#: .\templates\main\about.html:82
+msgid "正式成立专业用车服务平台"
+msgstr ""
+
+#: .\templates\main\about.html:88
+msgid "业务扩展"
+msgstr ""
+
+#: .\templates\main\about.html:89
+msgid "服务范围扩展至全国主要城市"
+msgstr ""
+
+#: .\templates\main\about.html:95
+msgid "平台升级"
+msgstr ""
+
+#: .\templates\main\about.html:96
+msgid "推出智能调度系统，提升服务效率"
+msgstr ""
+
+#: .\templates\main\about.html:102
+msgid "品质提升"
+msgstr ""
+
+#: .\templates\main\about.html:103
+msgid "获得行业多项认证，服务质量持续提升"
+msgstr ""
+
+#: .\templates\main\about.html:116
+msgid "如果您有任何问题或建议，欢迎随时与我们联系"
+msgstr ""
+
+#: .\templates\main\add_review.html:5
+msgid "添加评价"
+msgstr ""
+
+#: .\templates\main\add_review.html:9
+msgid "为您的用车服务评价"
+msgstr ""
+
+#: .\templates\main\add_review.html:15
+msgid "预订详情"
+msgstr ""
+
+#: .\templates\main\add_review.html:28
+msgid "您的评分"
+msgstr ""
+
+#: .\templates\main\add_review.html:49
+msgid "提交评价"
+msgstr ""
+
+#: .\templates\main\add_review.html:50
+msgid "返回"
+msgstr ""
+
+#: .\templates\main\add_review.html:100
+msgid "提交中..."
+msgstr ""
+
+#: .\templates\main\booking.html:6 .\templates\main\booking.html:49
+msgid "在线预订"
+msgstr ""
+
+#: .\templates\main\booking.html:66
+msgid "用车类型"
+msgstr ""
+
+#: .\templates\main\booking.html:103
+msgid "请选择用车类型"
+msgstr ""
+
+#: .\templates\main\booking.html:111
+msgid "出发地"
+msgstr ""
+
+#: .\templates\main\booking.html:114
+msgid "请输入出发地"
+msgstr ""
+
+#: .\templates\main\booking.html:123
+msgid "请输入目的地"
+msgstr ""
+
+#: .\templates\main\booking.html:133
+msgid "出发日期"
+msgstr ""
+
+#: .\templates\main\booking.html:136
+msgid "请选择出发日期"
+msgstr ""
+
+#: .\templates\main\booking.html:142
+msgid "出发时间"
+msgstr ""
+
+#: .\templates\main\booking.html:145
+msgid "请选择出发时间"
+msgstr ""
+
+#: .\templates\main\booking.html:148
+msgid "请至少提前2小时预订用车"
+msgstr ""
+
+#: .\templates\main\booking.html:160 .\templates\main\booking.html:175
+#: .\templates\main\contact.html:93
+msgid "请选择"
+msgstr ""
+
+#: .\templates\main\booking.html:161 .\templates\main\booking.html:162
+#: .\templates\main\booking.html:163
+msgid "人"
+msgstr ""
+
+#: .\templates\main\booking.html:164
+msgid "人以上"
+msgstr ""
+
+#: .\templates\main\booking.html:167
+msgid "请选择乘客人数"
+msgstr ""
+
+#: .\templates\main\booking.html:176
+msgid "无行李"
+msgstr ""
+
+#: .\templates\main\booking.html:177 .\templates\main\booking.html:178
+msgid "件"
+msgstr ""
+
+#: .\templates\main\booking.html:179
+msgid "件以上"
+msgstr ""
+
+#: .\templates\main\booking.html:182
+msgid "请选择行李数量"
+msgstr ""
+
+#: .\templates\main\booking.html:190
+msgid "特殊要求（选填）"
+msgstr ""
+
+#: .\templates\main\booking.html:197
+msgid "提交预订"
+msgstr ""
+
+#: .\templates\main\booking.html:209 .\templates\main\terms.html:20
+msgid "服务说明"
+msgstr ""
+
+#: .\templates\main\booking.html:213
+msgid "专业司机接送"
+msgstr ""
+
+#: .\templates\main\booking.html:217
+msgid "全程保险保障"
+msgstr ""
+
+#: .\templates\main\booking.html:221
+msgid "免费等待15分钟"
+msgstr ""
+
+#: .\templates\main\booking.html:225
+msgid "24小时客服支持"
+msgstr ""
+
+#: .\templates\main\booking.html:234
+msgid "价格说明"
+msgstr ""
+
+#: .\templates\main\booking.html:240
+msgid "起步价（含最小里程）"
+msgstr ""
+
+#: .\templates\main\booking.html:241
+msgid "超出里程按每公里计费"
+msgstr ""
+
+#: .\templates\main\booking.html:246
+msgid "时段加价"
+msgstr ""
+
+#: .\templates\main\booking.html:248
+msgid "夜间服务（22:00-6:00）"
+msgstr ""
+
+#: .\templates\main\booking.html:249
+msgid "高峰时段（工作日7:00-9:00和17:00-19:00）"
+msgstr ""
+
+#: .\templates\main\booking.html:250
+msgid "节假日服务（周末及法定节假日）"
+msgstr ""
+
+#: .\templates\main\booking.html:255
+msgid "其他费用"
+msgstr ""
+
+#: .\templates\main\booking.html:257
+msgid "超时等待（15分钟后每分钟计费）"
+msgstr ""
+
+#: .\templates\main\booking.html:258
+msgid "特殊服务需求（如有）"
+msgstr ""
+
+#: .\templates\main\booking.html:263
+msgid "注：最终价格将根据实际行驶距离和服务时间计算"
+msgstr ""
+
+#: .\templates\main\contact.html:35
+msgid "客服热线"
+msgstr ""
+
+#: .\templates\main\contact.html:38
+msgid "7x24小时服务"
+msgstr ""
+
+#: .\templates\main\contact.html:42 .\templates\main\profile.html:66
+msgid "电子邮箱"
+msgstr ""
+
+#: .\templates\main\contact.html:48
+msgid "公司地址"
+msgstr ""
+
+#: .\templates\main\contact.html:50
+msgid "東京都渋谷区xxxビル"
+msgstr ""
+
+#: .\templates\main\contact.html:61
+msgid "在线留言"
+msgstr ""
+
+#: .\templates\main\contact.html:71
+msgid "请输入有效的姓名（2-50个字符，不能包含数字和特殊字符）"
+msgstr ""
+
+#: .\templates\main\contact.html:79
+msgid "请输入有效的邮箱地址"
+msgstr ""
+
+#: .\templates\main\contact.html:87
+msgid "请输入有效的11位手机号码"
+msgstr ""
+
+#: .\templates\main\contact.html:94
+msgid "预订咨询"
+msgstr ""
+
+#: .\templates\main\contact.html:95
+msgid "服务反馈"
+msgstr ""
+
+#: .\templates\main\contact.html:96
+msgid "投诉建议"
+msgstr ""
+
+#: .\templates\main\contact.html:97
+msgid "商务合作"
+msgstr ""
+
+#: .\templates\main\contact.html:98
+msgid "其他"
+msgstr ""
+
+#: .\templates\main\contact.html:101
+msgid "请选择留言主题"
+msgstr ""
+
+#: .\templates\main\contact.html:105
+msgid "留言内容"
+msgstr ""
+
+#: .\templates\main\contact.html:109
+msgid "请输入10-1000字的留言内容"
+msgstr ""
+
+#: .\templates\main\contact.html:118
+msgid "提交留言"
+msgstr ""
+
+#: .\templates\main\contact.html:135
+msgid "公司位置"
+msgstr ""
+
+#: .\templates\main\drivers.html:6
+msgid "司机列表"
+msgstr ""
+
+#: .\templates\main\drivers.html:10
+msgid "我们的专业司机"
+msgstr ""
+
+#: .\templates\main\drivers.html:19 .\templates\main\drivers.html:28
+#: .\templates\main\my_bookings.html:47 .\templates\main\vehicles.html:98
+#: .\templates\main\vehicles.html:107
+msgid "全部"
+msgstr ""
+
+#: .\templates\main\drivers.html:20 .\templates\main\drivers.html:21
+#: .\templates\main\drivers.html:22 .\templates\main\drivers.html:65
+#: .\templates\main\vehicles.html:141 .\templates\main\vehicles.html:174
+msgid "年"
+msgstr ""
+
+#: .\templates\main\drivers.html:26
+msgid "最低评分"
+msgstr ""
+
+#: .\templates\main\drivers.html:34 .\templates\main\vehicles.html:115
+msgid "筛选"
+msgstr ""
+
+#: .\templates\main\drivers.html:62
+msgid "总行程"
+msgstr ""
+
+#: .\templates\main\drivers.html:62
+msgid "次"
+msgstr ""
+
+#: .\templates\main\drivers.html:86
+msgid "最近评价"
+msgstr ""
+
+#: .\templates\main\drivers.html:111
+msgid "暂无符合条件的司机"
+msgstr ""
+
+#: .\templates\main\faq.html:42
+msgid "常见问题解答"
+msgstr ""
+
+#: .\templates\main\faq.html:74
+msgid "暂无常见问题"
+msgstr ""
+
+#: .\templates\main\faq.html:84
+msgid "还有其他问题？"
+msgstr ""
+
+#: .\templates\main\faq.html:85
+msgid "如果您没有找到想要的答案，请随时联系我们"
+msgstr ""
+
+#: .\templates\main\my_bookings.html:41
+msgid "预订历史"
+msgstr ""
+
+#: .\templates\main\my_bookings.html:75
+msgid "预订编号"
+msgstr ""
+
+#: .\templates\main\my_bookings.html:110
+msgid "取消预订"
+msgstr ""
+
+#: .\templates\main\my_bookings.html:116
+msgid "评价服务"
+msgstr ""
+
+#: .\templates\main\my_bookings.html:158
+msgid "暂无预订记录"
+msgstr ""
+
+#: .\templates\main\my_bookings.html:159
+msgid "您还没有任何预订记录，立即预订用车开启您的旅程吧！"
+msgstr ""
+
+#: .\templates\main\my_bookings.html:162 .\templates\main\service_area.html:138
+#: .\templates\main\vehicles.html:246
+msgid "立即预订"
+msgstr ""
+
+#: .\templates\main\privacy.html:20
+msgid "信息收集"
+msgstr ""
+
+#: .\templates\main\privacy.html:21
+msgid "我们收集的信息包括但不限于："
+msgstr ""
+
+#: .\templates\main\privacy.html:23
+msgid "基本个人信息（姓名、联系方式等）"
+msgstr ""
+
+#: .\templates\main\privacy.html:24
+msgid "账户信息（用户名、密码等）"
+msgstr ""
+
+#: .\templates\main\privacy.html:25
+msgid "订单信息（预订记录、支付信息等）"
+msgstr ""
+
+#: .\templates\main\privacy.html:26
+msgid "设备信息（IP地址、浏览器类型等）"
+msgstr ""
+
+#: .\templates\main\privacy.html:31
+msgid "信息使用"
+msgstr ""
+
+#: .\templates\main\privacy.html:32
+msgid "我们使用收集的信息用于："
+msgstr ""
+
+#: .\templates\main\privacy.html:34
+msgid "提供、维护和改进我们的服务"
+msgstr ""
+
+#: .\templates\main\privacy.html:35
+msgid "处理您的预订和支付"
+msgstr ""
+
+#: .\templates\main\privacy.html:36
+msgid "发送服务通知和更新"
+msgstr ""
+
+#: .\templates\main\privacy.html:37
+msgid "防止欺诈和提升安全性"
+msgstr ""
+
+#: .\templates\main\privacy.html:42
+msgid "信息保护"
+msgstr ""
+
+#: .\templates\main\privacy.html:43
+msgid "我们采取以下措施保护您的信息："
+msgstr ""
+
+#: .\templates\main\privacy.html:45
+msgid "使用加密技术保护数据传输"
+msgstr ""
+
+#: .\templates\main\privacy.html:46
+msgid "实施访问控制措施"
+msgstr ""
+
+#: .\templates\main\privacy.html:47 .\templates\main\safety.html:165
+msgid "定期安全审计"
+msgstr ""
+
+#: .\templates\main\privacy.html:48
+msgid "员工保密培训"
+msgstr ""
+
+#: .\templates\main\privacy.html:53
+msgid "信息共享"
+msgstr ""
+
+#: .\templates\main\privacy.html:54
+msgid "我们不会出售您的个人信息。仅在以下情况下可能共享信息："
+msgstr ""
+
+#: .\templates\main\privacy.html:56
+msgid "经您明确同意"
+msgstr ""
+
+#: .\templates\main\privacy.html:57
+msgid "为完成服务必需（如与合作的司机共享行程信息）"
+msgstr ""
+
+#: .\templates\main\privacy.html:58
+msgid "法律要求"
+msgstr ""
+
+#: .\templates\main\privacy.html:63
+msgid "Cookie使用"
+msgstr ""
+
+#: .\templates\main\privacy.html:64
+msgid "我们使用Cookie来："
+msgstr ""
+
+#: .\templates\main\privacy.html:66
+msgid "记住您的登录状态"
+msgstr ""
+
+#: .\templates\main\privacy.html:67
+msgid "分析网站使用情况"
+msgstr ""
+
+#: .\templates\main\privacy.html:68
+msgid "优化用户体验"
+msgstr ""
+
+#: .\templates\main\privacy.html:73
+msgid "隐私政策更新"
+msgstr ""
+
+#: .\templates\main\privacy.html:74
+msgid ""
+"我们可能会不时更新本隐私政策。更新后的政策将在网站上公布，并在必要时通知您重"
+"大变更。"
+msgstr ""
+
+#: .\templates\main\privacy.html:80 .\templates\main\terms.html:78
+msgid "最后更新时间：2024年1月"
+msgstr ""
+
+#: .\templates\main\privacy.html:81 .\templates\main\terms.html:79
+msgid "如有任何问题，请"
+msgstr ""
+
+#: .\templates\main\profile.html:26
+msgid "更换头像"
+msgstr ""
+
+#: .\templates\main\profile.html:49
+msgid "编辑个人资料"
+msgstr ""
+
+#: .\templates\main\profile.html:56
+msgid "姓"
+msgstr ""
+
+#: .\templates\main\profile.html:60
+msgid "名"
+msgstr ""
+
+#: .\templates\main\profile.html:68
+msgid "邮箱地址不可更改"
+msgstr ""
+
+#: .\templates\main\profile.html:100
+msgid "接收通知和更新"
+msgstr ""
+
+#: .\templates\main\profile.html:107
+msgid "保存更改"
+msgstr ""
+
+#: .\templates\main\safety.html:22
+msgid "司机安全"
+msgstr ""
+
+#: .\templates\main\safety.html:27
+msgid "严格的司机筛选和培训制度"
+msgstr ""
+
+#: .\templates\main\safety.html:31
+msgid "定期的安全培训和考核"
+msgstr ""
+
+#: .\templates\main\safety.html:35
+msgid "实时行驶记录监控"
+msgstr ""
+
+#: .\templates\main\safety.html:39
+msgid "健康状况定期检查"
+msgstr ""
+
+#: .\templates\main\safety.html:50
+msgid "车辆安全"
+msgstr ""
+
+#: .\templates\main\safety.html:55
+msgid "定期车辆安全检查"
+msgstr ""
+
+#: .\templates\main\safety.html:59
+msgid "全车配备安全设备"
+msgstr ""
+
+#: .\templates\main\safety.html:63
+msgid "实时车况监控系统"
+msgstr ""
+
+#: .\templates\main\safety.html:67
+msgid "定期保养维护记录"
+msgstr ""
+
+#: .\templates\main\safety.html:82
+msgid "保险保障"
+msgstr ""
+
+#: .\templates\main\safety.html:86
+msgid "商业保险"
+msgstr ""
+
+#: .\templates\main\safety.html:90
+msgid "车辆损失险"
+msgstr ""
+
+#: .\templates\main\safety.html:94
+msgid "第三者责任险"
+msgstr ""
+
+#: .\templates\main\safety.html:98
+msgid "乘客意外险"
+msgstr ""
+
+#: .\templates\main\safety.html:103
+msgid "附加保险"
+msgstr ""
+
+#: .\templates\main\safety.html:107
+msgid "司机责任险"
+msgstr ""
+
+#: .\templates\main\safety.html:111
+msgid "车上货物险"
+msgstr ""
+
+#: .\templates\main\safety.html:115
+msgid "不计免赔特约险"
+msgstr ""
+
+#: .\templates\main\safety.html:132
+msgid "隐私保护"
+msgstr ""
+
+#: .\templates\main\safety.html:136
+msgid "信息安全"
+msgstr ""
+
+#: .\templates\main\safety.html:140
+msgid "数据加密传输"
+msgstr ""
+
+#: .\templates\main\safety.html:144
+msgid "敏感信息脱敏处理"
+msgstr ""
+
+#: .\templates\main\safety.html:148
+msgid "访问权限控制"
+msgstr ""
+
+#: .\templates\main\safety.html:157
+msgid "用户信息保护"
+msgstr ""
+
+#: .\templates\main\safety.html:161
+msgid "隐私条款遵守"
+msgstr ""
+
+#: .\templates\main\safety.html:182
+msgid "24小时紧急联系"
+msgstr ""
+
+#: .\templates\main\safety.html:184
+msgid "如遇紧急情况，请立即拨打我们的24小时服务热线"
+msgstr ""
+
+#: .\templates\main\safety.html:188
+msgid "在线咨询"
+msgstr ""
+
+#: .\templates\main\service_area.html:5 .\templates\main\service_area.html:41
+msgid "服务范围"
+msgstr ""
+
+#: .\templates\main\service_area.html:42
+msgid "覆盖主要城市区域，为您提供便捷的用车服务"
+msgstr ""
+
+#: .\templates\main\service_area.html:65
+msgid "服务区域列表"
+msgstr ""
+
+#: .\templates\main\service_area.html:86
+msgid "暂无服务区域信息"
+msgstr ""
+
+#: .\templates\main\service_area.html:105
+msgid "覆盖范围广"
+msgstr ""
+
+#: .\templates\main\service_area.html:106
+msgid "服务范围覆盖主要城市区域，满足您的各种用车需求。"
+msgstr ""
+
+#: .\templates\main\service_area.html:114
+msgid "全天候服务"
+msgstr ""
+
+#: .\templates\main\service_area.html:115
+msgid "24小时随时待命，为您提供及时的用车服务。"
+msgstr ""
+
+#: .\templates\main\service_area.html:123
+msgid "价格透明"
+msgstr ""
+
+#: .\templates\main\service_area.html:124
+msgid "根据服务区域明确定价，无隐藏费用。"
+msgstr ""
+
+#: .\templates\main\service_area.html:135
+msgid "准备预订用车了吗？"
+msgstr ""
+
+#: .\templates\main\service_area.html:136
+msgid "选择您的目的地，我们将为您提供最优质的服务"
+msgstr ""
+
+#: .\templates\main\terms.html:21
+msgid "我们提供专业的用车服务，包括但不限于："
+msgstr ""
+
+#: .\templates\main\terms.html:23
+msgid "商务用车服务"
+msgstr ""
+
+#: .\templates\main\terms.html:24
+msgid "机场接送服务"
+msgstr ""
+
+#: .\templates\main\terms.html:25
+msgid "长途包车服务"
+msgstr ""
+
+#: .\templates\main\terms.html:26
+msgid "旅游用车服务"
+msgstr ""
+
+#: .\templates\main\terms.html:31
+msgid "用户责任"
+msgstr ""
+
+#: .\templates\main\terms.html:32
+msgid "用户在使用我们的服务时应："
+msgstr ""
+
+#: .\templates\main\terms.html:34
+msgid "提供真实、准确的个人信息"
+msgstr ""
+
+#: .\templates\main\terms.html:35
+msgid "遵守预约时间，按时到达上车地点"
+msgstr ""
+
+#: .\templates\main\terms.html:36
+msgid "爱护车辆，遵守乘车规则"
+msgstr ""
+
+#: .\templates\main\terms.html:37
+msgid "不得从事任何违法活动"
+msgstr ""
+
+#: .\templates\main\terms.html:42
+msgid "预订和取消"
+msgstr ""
+
+#: .\templates\main\terms.html:44
+msgid "预订需提前24小时进行"
+msgstr ""
+
+#: .\templates\main\terms.html:45
+msgid "取消预订需提前12小时通知"
+msgstr ""
+
+#: .\templates\main\terms.html:46
+msgid "临时取消可能产生费用"
+msgstr ""
+
+#: .\templates\main\terms.html:47
+msgid "特殊情况下的取消政策以具体通知为准"
+msgstr ""
+
+#: .\templates\main\terms.html:52
+msgid "支付条款"
+msgstr ""
+
+#: .\templates\main\terms.html:54
+msgid "服务费用需提前支付"
+msgstr ""
+
+#: .\templates\main\terms.html:55
+msgid "支持多种支付方式"
+msgstr ""
+
+#: .\templates\main\terms.html:56
+msgid "额外服务费用需另行支付"
+msgstr ""
+
+#: .\templates\main\terms.html:57
+msgid "发票开具需在服务完成后申请"
+msgstr ""
+
+#: .\templates\main\terms.html:62
+msgid "安全和保险"
+msgstr ""
+
+#: .\templates\main\terms.html:64
+msgid "所有车辆均投保相应险种"
+msgstr ""
+
+#: .\templates\main\terms.html:65
+msgid "乘客需遵守安全乘车规定"
+msgstr ""
+
+#: .\templates\main\terms.html:66
+msgid "意外情况下的责任划分按保险条款执行"
+msgstr ""
+
+#: .\templates\main\terms.html:71
+msgid "条款更新"
+msgstr ""
+
+#: .\templates\main\terms.html:72
+msgid ""
+"我们保留随时更新这些条款的权利。重大更新将通过网站公告或电子邮件通知用户。"
+msgstr ""
+
+#: .\templates\main\vehicles.html:5
+msgid "车辆展示"
+msgstr ""
+
+#: .\templates\main\vehicles.html:81
+msgid "我们的车队"
+msgstr ""
+
+#: .\templates\main\vehicles.html:82
+msgid "多样化的车型选择，满足您的不同需求"
+msgstr ""
+
+#: .\templates\main\vehicles.html:108 .\templates\main\vehicles.html:109
+#: .\templates\main\vehicles.html:110 .\templates\main\vehicles.html:137
+#: .\templates\main\vehicles.html:175
+msgid "座"
+msgstr ""
+
+#: .\templates\main\vehicles.html:131 .\templates\main\vehicles.html:167
+msgid "默认车辆图片"
+msgstr ""
+
+#: .\templates\main\vehicles.html:147
+msgid "查看详情"
+msgstr ""
+
+#: .\templates\main\vehicles.html:158
+msgid "车辆详情"
+msgstr ""
+
+#: .\templates\main\vehicles.html:171
+msgid "基本信息"
+msgstr ""
+
+#: .\templates\main\vehicles.html:179
+msgid "车辆特点"
+msgstr ""
+
+#: .\templates\main\vehicles.html:187
+msgid "选择该车辆"
+msgstr ""
+
+#: .\templates\main\vehicles.html:188
+msgid "关闭"
+msgstr ""
+
+#: .\templates\main\vehicles.html:196
+msgid "暂无符合条件的车辆"
+msgstr ""
+
+#: .\templates\main\vehicles.html:244
+msgid "找到心仪的车辆了吗？"
+msgstr ""
+
+#: .\templates\main\vehicles.html:245
+msgid "立即预订，开启您的舒适旅程"
+msgstr ""
+
+#: .\templates\admin\base.html:123
+msgid "Social accounts"
+msgstr "社交账号"
+
+#: .\templates\admin\base.html:124
+msgid "Social application tokens"
+msgstr "社交应用令牌"
+
+#: .\templates\admin\base.html:125
+msgid "Social applications"
+msgstr "社交应用"
+
+#: .\templates\admin\base.html:126
+msgid "SOCIAL ACCOUNTS"
+msgstr "社交账号"
+
+#: .\templates\admin\base.html:100
+msgid "ACCOUNTS"
+msgstr "账号管理"
+
+#: .\templates\admin\base.html:110
+msgid "MAIN"
+msgstr "主要功能"
+
+#: .\templates\admin\base.html:120
+msgid "SITES"
+msgstr "站点"
+
+#: .\templates\admin\base.html:130
+msgid "Add"
+msgstr "增加"
+
+#: .\templates\admin\base.html:140
+msgid "Change"
+msgstr "修改"
+
+#: .\templates\admin\base.html:150
+msgid "Authentication and Authorization"
+msgstr "身份认证和授权"
+
+#: .\templates\admin\base.html:160
+msgid "E-mail addresses"
+msgstr "电子邮箱地址"
+
+#: .\templates\admin\base.html:170
+msgid "Sites"
+msgstr "站点"

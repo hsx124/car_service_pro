@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans '服务范围' %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<style>
+    #map {
+        height: 500px;
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .area-list {
+        max-height: 500px;
+        overflow-y: auto;
+    }
+    .area-item {
+        transition: all 0.3s ease;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    .area-item:hover {
+        background-color: #f8f9fa;
+    }
+    .service-feature {
+        transition: transform 0.3s ease;
+    }
+    .service-feature:hover {
+        transform: translateY(-5px);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 页面标题 -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h1 class="text-center mb-3">{% trans '服务范围' %}</h1>
+        <p class="text-center lead mb-0">{% trans '覆盖主要城市区域，为您提供便捷的用车服务' %}</p>
+    </div>
+</section>
+
+<!-- 地图和服务区域列表 -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- 地图 -->
+            <div class="col-lg-8 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 服务区域列表 -->
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">
+                            <i class="fas fa-list-ul text-primary me-2"></i>
+                            {% trans '服务区域列表' %}
+                        </h3>
+                        <div class="area-list">
+                            {% for area in service_areas %}
+                            <div class="area-item mb-3">
+                                <h5 class="mb-2">
+                                    <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                                    {{ area.name }}
+                                </h5>
+                                <p class="text-muted mb-2">
+                                    <i class="fas fa-yen-sign me-2"></i>
+                                    {% trans '基础价格' %}：¥{{ area.base_price }}
+                                </p>
+                                <p class="mb-0 small">{{ area.description }}</p>
+                            </div>
+                            {% if not forloop.last %}
+                            <hr class="my-3">
+                            {% endif %}
+                            {% empty %}
+                            <div class="text-center text-muted">
+                                <i class="fas fa-info-circle me-2"></i>
+                                {% trans '暂无服务区域信息' %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 服务说明 -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 service-feature">
+                    <div class="card-body text-center">
+                        <i class="fas fa-map-marked-alt fa-3x mb-3 text-primary"></i>
+                        <h4>{% trans '覆盖范围广' %}</h4>
+                        <p class="mb-0 text-muted">{% trans '服务范围覆盖主要城市区域，满足您的各种用车需求。' %}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 service-feature">
+                    <div class="card-body text-center">
+                        <i class="fas fa-clock fa-3x mb-3 text-primary"></i>
+                        <h4>{% trans '全天候服务' %}</h4>
+                        <p class="mb-0 text-muted">{% trans '24小时随时待命，为您提供及时的用车服务。' %}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 service-feature">
+                    <div class="card-body text-center">
+                        <i class="fas fa-hand-holding-usd fa-3x mb-3 text-primary"></i>
+                        <h4>{% trans '价格透明' %}</h4>
+                        <p class="mb-0 text-muted">{% trans '根据服务区域明确定价，无隐藏费用。' %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 预订引导 -->
+<section class="py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">{% trans '准备预订用车了吗？' %}</h2>
+        <p class="lead mb-4">{% trans '选择您的目的地，我们将为您提供最优质的服务' %}</p>
+        <a href="{% url 'booking' %}" class="btn btn-primary btn-lg">
+            <i class="fas fa-car me-2"></i>{% trans '立即预订' %}
+        </a>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    // 将Django模板变量转换为JavaScript变量
+    var serviceAreasJson = '{{ service_areas_json|safe }}';
+    var serviceAreasData = JSON.parse(serviceAreasJson);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // 初始化地图
+        var map = L.map('map').setView([35.6762, 139.6503], 10);
+        
+        // 添加地图图层
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // 添加服务区域到地图
+        var bounds = [];
+        serviceAreasData.forEach(function(area) {
+            if (area.coordinates) {
+                var areaPolygon = L.polygon(area.coordinates, {
+                    color: '#3B82F6',
+                    fillColor: '#3B82F6',
+                    fillOpacity: 0.2,
+                    weight: 2
+                }).addTo(map);
+                
+                // 添加弹出信息
+                var popupContent = 
+                    '<div class="p-3">' +
+                    '<h5 class="mb-2">' + area.name + '</h5>' +
+                    '<p class="mb-2">基础价格：¥' + area.price + '</p>' +
+                    '<p class="mb-0 small">' + area.description + '</p>' +
+                    '</div>';
+                areaPolygon.bindPopup(popupContent);
+
+                // 鼠标悬停效果
+                areaPolygon.on('mouseover', function() {
+                    this.setStyle({
+                        fillOpacity: 0.4
+                    });
+                });
+                areaPolygon.on('mouseout', function() {
+                    this.setStyle({
+                        fillOpacity: 0.2
+                    });
+                });
+
+                // 添加中心点到边界数组
+                if (area.center) {
+                    bounds.push(area.center);
+                }
+            }
+        });
+
+        // 自动调整地图视图
+        if (bounds.length > 0) {
+            map.fitBounds(bounds);
+        }
+
+        // 添加搜索控件
+        var searchControl = L.control({position: 'topright'});
+        searchControl.onAdd = function(map) {
+            var div = L.DomUtil.create('div', 'leaflet-control');
+            div.innerHTML = '<input type="text" class="form-control" placeholder="搜索地址..." style="width: 200px;">';
+            return div;
+        };
+        searchControl.addTo(map);
+    });
+</script>
+{% endblock %} 
