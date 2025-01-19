@@ -1,15 +1,85 @@
-<<<<<<< HEAD
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}车辆展示 - 用车预订平台{% endblock %}
+{% block title %}{% trans '车辆展示' %}{% endblock %}
+
+{% block extra_css %}
+<style>
+.vehicle-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1050;
+}
+
+.vehicle-modal.show {
+    display: block;
+}
+
+.vehicle-modal-dialog {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    margin: 1.75rem auto;
+    background-color: #fff;
+    border-radius: 0.5rem;
+}
+
+.vehicle-modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.vehicle-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.vehicle-modal-body {
+    padding: 1rem;
+}
+
+.vehicle-modal-footer {
+    padding: 1rem;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.modal-backdrop {
+    display: none;
+}
+</style>
+{% endblock %}
 
 {% block content %}
 <!-- 页面标题 -->
 <section class="py-5 bg-light">
     <div class="container">
-        <h1 class="text-center mb-4">我们的车队</h1>
-        <p class="text-center lead mb-0">多样化的车型选择，满足您的不同需求</p>
+        <h1 class="text-center mb-4">{% trans '我们的车队' %}</h1>
+        <p class="text-center lead mb-0">{% trans '多样化的车型选择，满足您的不同需求' %}</p>
     </div>
 </section>
 
@@ -21,28 +91,28 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <form class="row g-3">
+                        <form class="row g-3" method="get">
                             <div class="col-md-4">
-                                <label class="form-label">车型</label>
+                                <label class="form-label">{% trans '车型' %}</label>
                                 <select class="form-select" name="type">
-                                    <option value="">全部</option>
-                                    <option value="economy">经济型</option>
-                                    <option value="business">商务型</option>
-                                    <option value="luxury">豪华型</option>
+                                    <option value="">{% trans '全部' %}</option>
+                                    <option value="economy" {% if request.GET.type == 'economy' %}selected{% endif %}>{% trans '经济型' %}</option>
+                                    <option value="business" {% if request.GET.type == 'business' %}selected{% endif %}>{% trans '商务型' %}</option>
+                                    <option value="luxury" {% if request.GET.type == 'luxury' %}selected{% endif %}>{% trans '豪华型' %}</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">座位数</label>
+                                <label class="form-label">{% trans '座位数' %}</label>
                                 <select class="form-select" name="seats">
-                                    <option value="">全部</option>
-                                    <option value="4">4座</option>
-                                    <option value="5">5座</option>
-                                    <option value="7">7座</option>
+                                    <option value="">{% trans '全部' %}</option>
+                                    <option value="4" {% if request.GET.seats == '4' %}selected{% endif %}>4{% trans '座' %}</option>
+                                    <option value="5" {% if request.GET.seats == '5' %}selected{% endif %}>5{% trans '座' %}</option>
+                                    <option value="7" {% if request.GET.seats == '7' %}selected{% endif %}>7{% trans '座' %}</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">&nbsp;</label>
-                                <button type="submit" class="btn btn-primary w-100">筛选</button>
+                                <button type="submit" class="btn btn-primary w-100">{% trans '筛选' %}</button>
                             </div>
                         </form>
                     </div>
@@ -54,68 +124,68 @@
         <div class="row">
             {% for vehicle in vehicles %}
             <div class="col-md-4 mb-4">
-                <div class="card h-100 animate-on-scroll">
+                <div class="card h-100">
                     {% if vehicle.image %}
-                    <img src="{{ vehicle.image.url }}" class="card-img-top" alt="{{ vehicle.brand }} {{ vehicle.model }}">
+                    <img src="{{ vehicle.image.url }}" class="card-img-top" alt="{{ vehicle.brand }} {{ vehicle.model }}" style="height: 200px; object-fit: cover;">
                     {% else %}
-                    <img src="{% static 'img/default-car.jpg' %}" class="card-img-top" alt="默认车辆图片">
+                    <img src="{% static 'img/default-car.jpg' %}" class="card-img-top" alt="{% trans '默认车辆图片' %}" style="height: 200px; object-fit: cover;">
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ vehicle.brand }} {{ vehicle.model }}</h5>
                         <div class="mb-3">
                             <span class="badge bg-primary">{{ vehicle.get_type_display }}</span>
-                            <span class="badge bg-info">{{ vehicle.seats }}座</span>
+                            <span class="badge bg-info">{{ vehicle.seats }}{% trans '座' %}</span>
                             <span class="badge bg-success">{{ vehicle.get_status_display }}</span>
                         </div>
                         <p class="card-text">
-                            <i class="fas fa-calendar-alt me-2"></i>年份：{{ vehicle.year }}年<br>
-                            <i class="fas fa-id-card me-2"></i>车牌号：{{ vehicle.plate_number }}
+                            <i class="bi bi-calendar me-2"></i>{% trans '年份' %}: {{ vehicle.year }}{% trans '年' %}<br>
+                            <i class="bi bi-card-text me-2"></i>{% trans '车牌号' %}: {{ vehicle.plate_number }}
                         </p>
                     </div>
                     <div class="card-footer bg-transparent border-top-0">
-                        <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#vehicleModal{{ vehicle.id }}">
-                            查看详情
+                        <button type="button" class="btn btn-outline-primary w-100" onclick="showVehicleDetails('{{ vehicle.id }}')">
+                            {% trans '查看详情' %}
                         </button>
                     </div>
                 </div>
             </div>
 
             <!-- 车辆详情模态框 -->
-            <div class="modal fade" id="vehicleModal{{ vehicle.id }}" tabindex="-1">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">{{ vehicle.brand }} {{ vehicle.model }} - 车辆详情</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <div id="vehicleModal-{{ vehicle.id }}" class="vehicle-modal">
+                <div class="vehicle-modal-dialog">
+                    <div class="vehicle-modal-content">
+                        <div class="vehicle-modal-header">
+                            <h5 class="modal-title">{{ vehicle.brand }} {{ vehicle.model }} - {% trans '车辆详情' %}</h5>
+                            <button type="button" class="close-button" onclick="hideVehicleDetails('{{ vehicle.id }}')">&times;</button>
                         </div>
-                        <div class="modal-body">
+                        <div class="vehicle-modal-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     {% if vehicle.image %}
                                     <img src="{{ vehicle.image.url }}" class="img-fluid rounded" alt="{{ vehicle.brand }} {{ vehicle.model }}">
                                     {% else %}
-                                    <img src="{% static 'img/default-car.jpg' %}" class="img-fluid rounded" alt="默认车辆图片">
+                                    <img src="{% static 'img/default-car.jpg' %}" class="img-fluid rounded" alt="{% trans '默认车辆图片' %}">
                                     {% endif %}
                                 </div>
                                 <div class="col-md-6">
-                                    <h4>基本信息</h4>
+                                    <h4>{% trans '基本信息' %}</h4>
                                     <p>
-                                        <i class="fas fa-car me-2"></i>车型：{{ vehicle.get_type_display }}<br>
-                                        <i class="fas fa-calendar-alt me-2"></i>年份：{{ vehicle.year }}年<br>
-                                        <i class="fas fa-chair me-2"></i>座位数：{{ vehicle.seats }}座<br>
-                                        <i class="fas fa-id-card me-2"></i>车牌号：{{ vehicle.plate_number }}<br>
-                                        <i class="fas fa-info-circle me-2"></i>状态：{{ vehicle.get_status_display }}
+                                        <i class="bi bi-car-front me-2"></i>{% trans '车型' %}: {{ vehicle.get_type_display }}<br>
+                                        <i class="bi bi-calendar me-2"></i>{% trans '年份' %}: {{ vehicle.year }}{% trans '年' %}<br>
+                                        <i class="bi bi-people me-2"></i>{% trans '座位数' %}: {{ vehicle.seats }}{% trans '座' %}<br>
+                                        <i class="bi bi-card-text me-2"></i>{% trans '车牌号' %}: {{ vehicle.plate_number }}<br>
+                                        <i class="bi bi-info-circle me-2"></i>{% trans '状态' %}: {{ vehicle.get_status_display }}
                                     </p>
-                                    <h4>车辆特点</h4>
+                                    <h4>{% trans '车辆特点' %}</h4>
                                     <div class="features">
                                         {{ vehicle.features|linebreaks }}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <a href="{% url 'booking' %}?vehicle={{ vehicle.id }}" class="btn btn-primary">选择该车辆</a>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                        <div class="vehicle-modal-footer">
+                            <a href="{% url 'booking' %}?vehicle={{ vehicle.id }}" class="btn btn-primary">{% trans '选择该车辆' %}</a>
+                            <button type="button" class="btn btn-secondary" onclick="hideVehicleDetails('{{ vehicle.id }}')">{% trans '关闭' %}</button>
                         </div>
                     </div>
                 </div>
@@ -123,7 +193,7 @@
             {% empty %}
             <div class="col-12">
                 <div class="alert alert-info text-center">
-                    暂无符合条件的车辆
+                    {% trans '暂无符合条件的车辆' %}
                 </div>
             </div>
             {% endfor %}
@@ -134,33 +204,33 @@
         <nav class="mt-4">
             <ul class="pagination justify-content-center">
                 {% if page_obj.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.seats %}&seats={{ request.GET.seats }}{% endif %}">
-                            <i class="fas fa-chevron-left"></i>
-                        </a>
-                    </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.seats %}&seats={{ request.GET.seats }}{% endif %}">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
                 {% endif %}
 
                 {% for num in page_obj.paginator.page_range %}
-                    {% if page_obj.number == num %}
-                        <li class="page-item active">
-                            <span class="page-link">{{ num }}</span>
-                        </li>
-                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ num }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.seats %}&seats={{ request.GET.seats }}{% endif %}">
-                                {{ num }}
-                            </a>
-                        </li>
-                    {% endif %}
+                {% if page_obj.number == num %}
+                <li class="page-item active">
+                    <span class="page-link">{{ num }}</span>
+                </li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ num }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.seats %}&seats={{ request.GET.seats }}{% endif %}">
+                        {{ num }}
+                    </a>
+                </li>
+                {% endif %}
                 {% endfor %}
 
                 {% if page_obj.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.seats %}&seats={{ request.GET.seats }}{% endif %}">
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.seats %}&seats={{ request.GET.seats }}{% endif %}">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
                 {% endif %}
             </ul>
         </nav>
@@ -171,188 +241,49 @@
 <!-- 预订引导 -->
 <section class="py-5 bg-light">
     <div class="container text-center">
-        <h2 class="mb-4">找到心仪的车辆了吗？</h2>
-        <p class="lead mb-4">立即预订，开启您的舒适旅程</p>
-        <a href="{% url 'booking' %}" class="btn btn-primary btn-lg">立即预订</a>
-    </div>
-</section>
-=======
-{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}车辆展示 - 用车预订平台{% endblock %}
-
-{% block content %}
-<!-- 页面标题 -->
-<section class="py-5 bg-light">
-    <div class="container">
-        <h1 class="text-center mb-4">我们的车队</h1>
-        <p class="text-center lead mb-0">多样化的车型选择，满足您的不同需求</p>
+        <h2 class="mb-4">{% trans '找到心仪的车辆了吗？' %}</h2>
+        <p class="lead mb-4">{% trans '立即预订，开启您的舒适旅程' %}</p>
+        <a href="{% url 'booking' %}" class="btn btn-primary btn-lg">{% trans '立即预订' %}</a>
     </div>
 </section>
 
-<!-- 车辆筛选 -->
-<section class="py-5">
-    <div class="container">
-        <!-- 筛选器 -->
-        <div class="row mb-4">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <form class="row g-3">
-                            <div class="col-md-4">
-                                <label class="form-label">车型</label>
-                                <select class="form-select" name="type">
-                                    <option value="">全部</option>
-                                    <option value="economy">经济型</option>
-                                    <option value="business">商务型</option>
-                                    <option value="luxury">豪华型</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">座位数</label>
-                                <select class="form-select" name="seats">
-                                    <option value="">全部</option>
-                                    <option value="4">4座</option>
-                                    <option value="5">5座</option>
-                                    <option value="7">7座</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">&nbsp;</label>
-                                <button type="submit" class="btn btn-primary w-100">筛选</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+{% endblock %}
 
-        <!-- 车辆列表 -->
-        <div class="row">
-            {% for vehicle in vehicles %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 animate-on-scroll">
-                    {% if vehicle.image %}
-                    <img src="{{ vehicle.image.url }}" class="card-img-top" alt="{{ vehicle.brand }} {{ vehicle.model }}">
-                    {% else %}
-                    <img src="{% static 'img/default-car.jpg' %}" class="card-img-top" alt="默认车辆图片">
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ vehicle.brand }} {{ vehicle.model }}</h5>
-                        <div class="mb-3">
-                            <span class="badge bg-primary">{{ vehicle.get_type_display }}</span>
-                            <span class="badge bg-info">{{ vehicle.seats }}座</span>
-                            <span class="badge bg-success">{{ vehicle.get_status_display }}</span>
-                        </div>
-                        <p class="card-text">
-                            <i class="fas fa-calendar-alt me-2"></i>年份：{{ vehicle.year }}年<br>
-                            <i class="fas fa-id-card me-2"></i>车牌号：{{ vehicle.plate_number }}
-                        </p>
-                    </div>
-                    <div class="card-footer bg-transparent border-top-0">
-                        <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#vehicleModal{{ vehicle.id }}">
-                            查看详情
-                        </button>
-                    </div>
-                </div>
-            </div>
+{% block extra_js %}
+<script>
+function showVehicleDetails(vehicleId) {
+    const modal = document.getElementById(`vehicleModal-${vehicleId}`);
+    if (modal) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+}
 
-            <!-- 车辆详情模态框 -->
-            <div class="modal fade" id="vehicleModal{{ vehicle.id }}" tabindex="-1">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">{{ vehicle.brand }} {{ vehicle.model }} - 车辆详情</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    {% if vehicle.image %}
-                                    <img src="{{ vehicle.image.url }}" class="img-fluid rounded" alt="{{ vehicle.brand }} {{ vehicle.model }}">
-                                    {% else %}
-                                    <img src="{% static 'img/default-car.jpg' %}" class="img-fluid rounded" alt="默认车辆图片">
-                                    {% endif %}
-                                </div>
-                                <div class="col-md-6">
-                                    <h4>基本信息</h4>
-                                    <p>
-                                        <i class="fas fa-car me-2"></i>车型：{{ vehicle.get_type_display }}<br>
-                                        <i class="fas fa-calendar-alt me-2"></i>年份：{{ vehicle.year }}年<br>
-                                        <i class="fas fa-chair me-2"></i>座位数：{{ vehicle.seats }}座<br>
-                                        <i class="fas fa-id-card me-2"></i>车牌号：{{ vehicle.plate_number }}<br>
-                                        <i class="fas fa-info-circle me-2"></i>状态：{{ vehicle.get_status_display }}
-                                    </p>
-                                    <h4>车辆特点</h4>
-                                    <div class="features">
-                                        {{ vehicle.features|linebreaks }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="{% url 'booking' %}?vehicle={{ vehicle.id }}" class="btn btn-primary">选择该车辆</a>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% empty %}
-            <div class="col-12">
-                <div class="alert alert-info text-center">
-                    暂无符合条件的车辆
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+function hideVehicleDetails(vehicleId) {
+    const modal = document.getElementById(`vehicleModal-${vehicleId}`);
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+}
 
-        <!-- 分页 -->
-        {% if is_paginated %}
-        <nav class="mt-4">
-            <ul class="pagination justify-content-center">
-                {% if page_obj.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.seats %}&seats={{ request.GET.seats }}{% endif %}">
-                            <i class="fas fa-chevron-left"></i>
-                        </a>
-                    </li>
-                {% endif %}
+// 点击模态框外部关闭
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('vehicle-modal')) {
+        const vehicleId = event.target.id.replace('vehicleModal-', '');
+        hideVehicleDetails(vehicleId);
+    }
+});
 
-                {% for num in page_obj.paginator.page_range %}
-                    {% if page_obj.number == num %}
-                        <li class="page-item active">
-                            <span class="page-link">{{ num }}</span>
-                        </li>
-                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ num }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.seats %}&seats={{ request.GET.seats }}{% endif %}">
-                                {{ num }}
-                            </a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-
-                {% if page_obj.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.type %}&type={{ request.GET.type }}{% endif %}{% if request.GET.seats %}&seats={{ request.GET.seats }}{% endif %}">
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </li>
-                {% endif %}
-            </ul>
-        </nav>
-        {% endif %}
-    </div>
-</section>
-
-<!-- 预订引导 -->
-<section class="py-5 bg-light">
-    <div class="container text-center">
-        <h2 class="mb-4">找到心仪的车辆了吗？</h2>
-        <p class="lead mb-4">立即预订，开启您的舒适旅程</p>
-        <a href="{% url 'booking' %}" class="btn btn-primary btn-lg">立即预订</a>
-    </div>
-</section>
->>>>>>> 29e35e4892c15854585299d3eee6ff215d96cbb2
+// 按ESC键关闭
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const modal = document.querySelector('.vehicle-modal.show');
+        if (modal) {
+            const vehicleId = modal.id.replace('vehicleModal-', '');
+            hideVehicleDetails(vehicleId);
+        }
+    }
+});
+</script>
 {% endblock %} 

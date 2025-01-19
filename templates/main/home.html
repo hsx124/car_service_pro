@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {% extends 'base.html' %}
 {% load static %}
 
@@ -24,32 +23,54 @@
 <!-- 核心服务 -->
 <section class="services-section py-5">
     <div class="container">
-        <h2 class="text-center mb-5">我们的服务</h2>
+        <h2 class="text-center mb-2">我们的服务</h2>
+        <p class="text-center text-muted mb-5">专业的团队，优质的服务，为您提供全方位的用车解决方案</p>
         <div class="row">
             <div class="col-md-4 mb-4">
-                <div class="card h-100 animate-on-scroll">
-                    <div class="card-body text-center">
-                        <i class="fas fa-car fa-3x mb-3 text-primary"></i>
-                        <h3 class="card-title">专业包车服务</h3>
-                        <p class="card-text">提供各类型车辆，满足不同场景需求，专业司机全程服务。</p>
+                <div class="card h-100 border-0 shadow-sm animate-on-scroll">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon mb-4">
+                            <i class="bi bi-car-front-fill text-primary" style="font-size: 3rem;"></i>
+                        </div>
+                        <h3 class="card-title h4">多样化车型</h3>
+                        <p class="card-text text-muted">从经济型到豪华型，多种车型可选，满足您不同场景的用车需求。支持定制个性化用车方案。</p>
+                        <ul class="list-unstyled mt-3 text-start">
+                            <li><i class="bi bi-check2-circle text-success me-2"></i>经济型轿车</li>
+                            <li><i class="bi bi-check2-circle text-success me-2"></i>商务级轿车</li>
+                            <li><i class="bi bi-check2-circle text-success me-2"></i>豪华型轿车</li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card h-100 animate-on-scroll">
-                    <div class="card-body text-center">
-                        <i class="fas fa-route fa-3x mb-3 text-primary"></i>
-                        <h3 class="card-title">定制路线</h3>
-                        <p class="card-text">根据您的需求定制最优路线，让您的行程更加舒适便捷。</p>
+                <div class="card h-100 border-0 shadow-sm animate-on-scroll">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon mb-4">
+                            <i class="bi bi-person-check-fill text-primary" style="font-size: 3rem;"></i>
+                        </div>
+                        <h3 class="card-title h4">专业司机服务</h3>
+                        <p class="card-text text-muted">经验丰富的专业司机团队，熟悉路线，服务周到，确保您的行程安全舒适。</p>
+                        <ul class="list-unstyled mt-3 text-start">
+                            <li><i class="bi bi-check2-circle text-success me-2"></i>5年以上驾龄</li>
+                            <li><i class="bi bi-check2-circle text-success me-2"></i>多语言交流</li>
+                            <li><i class="bi bi-check2-circle text-success me-2"></i>礼貌专业</li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card h-100 animate-on-scroll">
-                    <div class="card-body text-center">
-                        <i class="fas fa-shield-alt fa-3x mb-3 text-primary"></i>
-                        <h3 class="card-title">安全保障</h3>
-                        <p class="card-text">全程保险覆盖，车载监控系统，确保您的出行安全。</p>
+                <div class="card h-100 border-0 shadow-sm animate-on-scroll">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon mb-4">
+                            <i class="bi bi-shield-check text-primary" style="font-size: 3rem;"></i>
+                        </div>
+                        <h3 class="card-title h4">安心保障</h3>
+                        <p class="card-text text-muted">全方位的安全保障体系，车辆定期维护，全程保险覆盖，让您安心出行。</p>
+                        <ul class="list-unstyled mt-3 text-start">
+                            <li><i class="bi bi-check2-circle text-success me-2"></i>全程保险</li>
+                            <li><i class="bi bi-check2-circle text-success me-2"></i>定期消毒</li>
+                            <li><i class="bi bi-check2-circle text-success me-2"></i>实时监控</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -60,34 +81,43 @@
 <!-- 优势亮点 -->
 <section class="features-section py-5 bg-light">
     <div class="container">
-        <h2 class="text-center mb-5">为什么选择我们</h2>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="feature-item text-center animate-on-scroll">
-                    <i class="fas fa-user-tie fa-4x mb-3 text-primary"></i>
-                    <h4>专业司机</h4>
-                    <p>经验丰富，服务周到</p>
+        <h2 class="text-center mb-2">为什么选择我们</h2>
+        <p class="text-center text-muted mb-5">超过10000+客户的共同选择，打造极致用车体验</p>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-item text-center p-4 bg-white rounded shadow-sm animate-on-scroll">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-award text-primary" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <h4 class="h5 mb-3">专业品质</h4>
+                    <p class="text-muted mb-0">10年+行业经验<br>持续优化服务标准</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="feature-item text-center animate-on-scroll">
-                    <i class="fas fa-clock fa-4x mb-3 text-primary"></i>
-                    <h4>准时可靠</h4>
-                    <p>准时接送，从不延误</p>
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-item text-center p-4 bg-white rounded shadow-sm animate-on-scroll">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-clock-history text-primary" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <h4 class="h5 mb-3">准时可靠</h4>
+                    <p class="text-muted mb-0">98.5%准时率<br>全程实时位置追踪</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="feature-item text-center animate-on-scroll">
-                    <i class="fas fa-hand-holding-usd fa-4x mb-3 text-primary"></i>
-                    <h4>透明定价</h4>
-                    <p>价格公开，无隐藏费用</p>
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-item text-center p-4 bg-white rounded shadow-sm animate-on-scroll">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-cash-stack text-primary" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <h4 class="h5 mb-3">透明定价</h4>
+                    <p class="text-muted mb-0">明码标价<br>无隐藏费用</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="feature-item text-center animate-on-scroll">
-                    <i class="fas fa-headset fa-4x mb-3 text-primary"></i>
-                    <h4>24/7支持</h4>
-                    <p>全天候客服在线服务</p>
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-item text-center p-4 bg-white rounded shadow-sm animate-on-scroll">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-headset text-primary" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <h4 class="h5 mb-3">贴心服务</h4>
+                    <p class="text-muted mb-0">24/7在线支持<br>3分钟内响应</p>
                 </div>
             </div>
         </div>
@@ -97,50 +127,72 @@
 <!-- 用户评价 -->
 <section class="testimonials-section py-5">
     <div class="container">
-        <h2 class="text-center mb-5">客户评价</h2>
+        <h2 class="text-center mb-2">客户评价</h2>
+        <p class="text-center text-muted mb-5">听听我们的客户怎么说</p>
         <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 animate-on-scroll">
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm animate-on-scroll">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="{% static 'img/avatars/avatar1.jpg' %}" alt="用户头像" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                            <div>
+                                <h5 class="mb-1">张先生</h5>
+                                <p class="text-muted mb-0">企业客户</p>
+                            </div>
                         </div>
-                        <p class="card-text">"服务非常专业，司机很有礼貌，让我的商务出行非常舒适。"</p>
-                        <footer class="blockquote-footer">张先生，企业客户</footer>
+                        <div class="mb-3">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                        </div>
+                        <p class="card-text">"作为一名经常出差的商务人士，我非常看重用车服务的品质。这家公司的服务让我印象深刻，司机专业、车辆舒适、准时可靠，是商务出行的理想之选。"</p>
+                        <p class="text-muted mb-0"><small>2024年1月</small></p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 animate-on-scroll">
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm animate-on-scroll">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="{% static 'img/avatars/avatar2.jpg' %}" alt="用户头像" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                            <div>
+                                <h5 class="mb-1">佐藤女士</h5>
+                                <p class="text-muted mb-0">家庭客户</p>
+                            </div>
                         </div>
-                        <p class="card-text">"价格合理，服务周到，是家人出游的最佳选择。"</p>
-                        <footer class="blockquote-footer">佐藤女士，家庭客户</footer>
+                        <div class="mb-3">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                        </div>
+                        <p class="card-text">"带着老人和孩子出游，最担心的就是安全和舒适度。司机非常有耐心，车内整洁舒适，全程都让我们感到很安心。特别适合家庭出行。"</p>
+                        <p class="text-muted mb-0"><small>2024年1月</small></p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 animate-on-scroll">
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm animate-on-scroll">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="{% static 'img/avatars/avatar3.jpg' %}" alt="用户头像" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                            <div>
+                                <h5 class="mb-1">Smith先生</h5>
+                                <p class="text-muted mb-0">外籍客户</p>
+                            </div>
                         </div>
-                        <p class="card-text">"预订系统非常方便，客服响应迅速，体验很好。"</p>
-                        <footer class="blockquote-footer">Smith先生，外籍客户</footer>
+                        <div class="mb-3">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                        </div>
+                        <p class="card-text">"As a foreigner in China, I was impressed by their multilingual service. The booking process was smooth, and the driver was very professional. Highly recommended for international travelers!"</p>
+                        <p class="text-muted mb-0"><small>2024年1月</small></p>
                     </div>
                 </div>
             </div>
@@ -151,168 +203,11 @@
 <!-- 预订引导 -->
 <section class="cta-section py-5 bg-primary text-white">
     <div class="container text-center">
-        <h2 class="mb-4 animate-on-scroll">准备开始您的旅程了吗？</h2>
-        <p class="lead mb-4 animate-on-scroll">立即预订，享受专业的用车服务</p>
-        <a href="{% url 'booking' %}" class="btn btn-light btn-lg animate-on-scroll">在线预订</a>
+        <h2 class="mb-3 animate-on-scroll">准备开始您的旅程了吗？</h2>
+        <p class="lead mb-4 animate-on-scroll">立即预订，享受专业的用车服务，让我们为您的每一程保驾护航</p>
+        <a href="{% url 'booking' %}" class="btn btn-light btn-lg animate-on-scroll">
+            <i class="bi bi-calendar-check me-2"></i>在线预订
+        </a>
     </div>
 </section>
-=======
-{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}首页 - 用车预订平台{% endblock %}
-
-{% block content %}
-<!-- 主横幅 -->
-<section class="hero-section bg-primary text-white py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h1 class="display-4 mb-4 animate-on-scroll">安全舒适的用车体验</h1>
-                <p class="lead mb-4 animate-on-scroll">专业司机，优质服务，让您的每一程都安心无忧</p>
-                <a href="{% url 'booking' %}" class="btn btn-light btn-lg animate-on-scroll">立即预订</a>
-            </div>
-            <div class="col-lg-6">
-                <img src="{% static 'img/hero-car.webp' %}" alt="豪华车队" class="img-fluid rounded shadow animate-on-scroll">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 核心服务 -->
-<section class="services-section py-5">
-    <div class="container">
-        <h2 class="text-center mb-5">我们的服务</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 animate-on-scroll">
-                    <div class="card-body text-center">
-                        <i class="fas fa-car fa-3x mb-3 text-primary"></i>
-                        <h3 class="card-title">专业包车服务</h3>
-                        <p class="card-text">提供各类型车辆，满足不同场景需求，专业司机全程服务。</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 animate-on-scroll">
-                    <div class="card-body text-center">
-                        <i class="fas fa-route fa-3x mb-3 text-primary"></i>
-                        <h3 class="card-title">定制路线</h3>
-                        <p class="card-text">根据您的需求定制最优路线，让您的行程更加舒适便捷。</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 animate-on-scroll">
-                    <div class="card-body text-center">
-                        <i class="fas fa-shield-alt fa-3x mb-3 text-primary"></i>
-                        <h3 class="card-title">安全保障</h3>
-                        <p class="card-text">全程保险覆盖，车载监控系统，确保您的出行安全。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 优势亮点 -->
-<section class="features-section py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center mb-5">为什么选择我们</h2>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="feature-item text-center animate-on-scroll">
-                    <i class="fas fa-user-tie fa-4x mb-3 text-primary"></i>
-                    <h4>专业司机</h4>
-                    <p>经验丰富，服务周到</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="feature-item text-center animate-on-scroll">
-                    <i class="fas fa-clock fa-4x mb-3 text-primary"></i>
-                    <h4>准时可靠</h4>
-                    <p>准时接送，从不延误</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="feature-item text-center animate-on-scroll">
-                    <i class="fas fa-hand-holding-usd fa-4x mb-3 text-primary"></i>
-                    <h4>透明定价</h4>
-                    <p>价格公开，无隐藏费用</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="feature-item text-center animate-on-scroll">
-                    <i class="fas fa-headset fa-4x mb-3 text-primary"></i>
-                    <h4>24/7支持</h4>
-                    <p>全天候客服在线服务</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 用户评价 -->
-<section class="testimonials-section py-5">
-    <div class="container">
-        <h2 class="text-center mb-5">客户评价</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 animate-on-scroll">
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                        </div>
-                        <p class="card-text">"服务非常专业，司机很有礼貌，让我的商务出行非常舒适。"</p>
-                        <footer class="blockquote-footer">张先生，企业客户</footer>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 animate-on-scroll">
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                        </div>
-                        <p class="card-text">"价格合理，服务周到，是家人出游的最佳选择。"</p>
-                        <footer class="blockquote-footer">佐藤女士，家庭客户</footer>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 animate-on-scroll">
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                        </div>
-                        <p class="card-text">"预订系统非常方便，客服响应迅速，体验很好。"</p>
-                        <footer class="blockquote-footer">Smith先生，外籍客户</footer>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 预订引导 -->
-<section class="cta-section py-5 bg-primary text-white">
-    <div class="container text-center">
-        <h2 class="mb-4 animate-on-scroll">准备开始您的旅程了吗？</h2>
-        <p class="lead mb-4 animate-on-scroll">立即预订，享受专业的用车服务</p>
-        <a href="{% url 'booking' %}" class="btn btn-light btn-lg animate-on-scroll">在线预订</a>
-    </div>
-</section>
->>>>>>> 29e35e4892c15854585299d3eee6ff215d96cbb2
 {% endblock %} 

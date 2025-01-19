@@ -1,10 +1,4 @@
-<<<<<<< HEAD
 {% load i18n %}
 {% autoescape off %}
 {% blocktrans %}请确认您的邮箱地址{% endblocktrans %}
-=======
-{% load i18n %}
-{% autoescape off %}
-{% blocktrans %}请确认您的邮箱地址{% endblocktrans %}
->>>>>>> 29e35e4892c15854585299d3eee6ff215d96cbb2
 {% endautoescape %} 

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
@@ -190,253 +189,41 @@
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
 
-{% endblock %}
-
-{% block extra_js %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // 表单验证
-    const form = document.querySelector('form');
-    
-    form.addEventListener('submit', function(event) {
-        if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-            
-            // 显示第一个错误字段的反馈
-            const firstInvalidField = form.querySelector(':invalid');
-            if (firstInvalidField) {
-                firstInvalidField.focus();
-            }
-        }
-        
-        form.classList.add('was-validated');
-        
-        // 检查是否选择了车型
-        const carType = form.querySelector('input[name="car_type"]:checked');
-        if (!carType) {
-            event.preventDefault();
-            alert('请选择用车类型');
-            return;
-        }
-        
-        // 检查日期时间是否合理
-        const pickupDate = form.querySelector('input[name="pickup_date"]').value;
-        const pickupTime = form.querySelector('input[name="pickup_time"]').value;
-        
-        if (pickupDate && pickupTime) {
-            const pickupDateTime = new Date(pickupDate + 'T' + pickupTime);
-            const now = new Date();
-            const twoHoursFromNow = new Date(now.getTime() + (2 * 60 * 60 * 1000));
-            
-            if (pickupDateTime <= twoHoursFromNow) {
-                event.preventDefault();
-                alert('请至少提前2小时预订用车');
-                return;
-            }
-        }
-    });
-    
-    // 设置日期选择器的最小值为今天
-    const dateInput = document.querySelector('input[name="pickup_date"]');
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.min = today;
-});
-</script>
-=======
-{% extends 'base.html' %}
-{% load static %}
-{% load crispy_forms_tags %}
-
-{% block title %}在线预订 - Car Service Pro{% endblock %}
-
-{% block content %}
-<div class="container py-5">
-    <div class="row">
-        <!-- 预订表单 -->
-        <div class="col-lg-8">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h2 class="card-title mb-4">在线预订</h2>
-                    
-                    {% if messages %}
-                    <div class="messages mb-4">
-                        {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }}">
-                            {{ message }}
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    
-                    <form method="post" class="needs-validation" novalidate>
-                        {% csrf_token %}
-                        
-                        <!-- 用车类型 -->
-                        <div class="mb-4">
-                            <label class="form-label">用车类型 <span class="text-danger">*</span></label>
-                            <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <div class="card-body text-center">
-                                            <input type="radio" class="btn-check" name="car_type" id="economy" value="economy" required>
-                                            <label class="btn btn-outline-primary w-100" for="economy">
-                                                <i class="fas fa-car mb-2"></i><br>
-                                                经济型
-                                            </label>
-                                            <div class="invalid-feedback">
-                                                请选择用车类型
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <div class="card-body text-center">
-                                            <input type="radio" class="btn-check" name="car_type" id="business" value="business">
-                                            <label class="btn btn-outline-primary w-100" for="business">
-                                                <i class="fas fa-car-side mb-2"></i><br>
-                                                商务型
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <div class="card-body text-center">
-                                            <input type="radio" class="btn-check" name="car_type" id="luxury" value="luxury">
-                                            <label class="btn btn-outline-primary w-100" for="luxury">
-                                                <i class="fas fa-car-alt mb-2"></i><br>
-                                                豪华型
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 行程信息 -->
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">出发地 <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="pickup_location" required>
-                                    <div class="invalid-feedback">
-                                        请输入出发地
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">目的地 <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="destination" required>
-                                    <div class="invalid-feedback">
-                                        请输入目的地
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 时间信息 -->
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">出发日期 <span class="text-danger">*</span></label>
-                                    <input type="date" class="form-control" name="pickup_date" required min="{{ today|date:'Y-m-d' }}">
-                                    <div class="invalid-feedback">
-                                        请选择出发日期
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">出发时间 <span class="text-danger">*</span></label>
-                                    <input type="time" class="form-control" name="pickup_time" required>
-                                    <div class="invalid-feedback">
-                                        请选择出发时间
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 乘客信息 -->
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">乘客人数 <span class="text-danger">*</span></label>
-                                    <select class="form-select" name="passengers" required>
-                                        <option value="">请选择</option>
-                                        <option value="1-2">1-2人</option>
-                                        <option value="3-4">3-4人</option>
-                                        <option value="5-6">5-6人</option>
-                                        <option value="7+">7人以上</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        请选择乘客人数
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">行李数量 <span class="text-danger">*</span></label>
-                                    <select class="form-select" name="luggage" required>
-                                        <option value="">请选择</option>
-                                        <option value="0">无行李</option>
-                                        <option value="1-2">1-2件</option>
-                                        <option value="3-4">3-4件</option>
-                                        <option value="5+">5件以上</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        请选择行李数量
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 备注信息 -->
-                        <div class="mb-4">
-                            <label class="form-label">特殊要求（选填）</label>
-                            <textarea class="form-control" name="special_requests" rows="3"></textarea>
-                        </div>
-
-                        <!-- 提交按钮 -->
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg">
-                                <i class="fas fa-check me-2"></i>提交预订
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- 服务说明 -->
-        <div class="col-lg-4">
+            <!-- 价格说明 -->
             <div class="card shadow-sm mb-4">
                 <div class="card-body">
-                    <h3 class="card-title">服务说明</h3>
+                    <h3 class="card-title">价格说明</h3>
                     <ul class="list-unstyled">
                         <li class="mb-3">
-                            <i class="fas fa-check-circle text-success me-2"></i>
-                            专业司机接送
+                            <i class="fas fa-info-circle text-primary me-2"></i>
+                            <strong>基础价格</strong>
+                            <ul class="ps-4 mt-2">
+                                <li>起步价（含最小里程）</li>
+                                <li>超出里程按每公里计费</li>
+                            </ul>
                         </li>
                         <li class="mb-3">
-                            <i class="fas fa-check-circle text-success me-2"></i>
-                            全程保险保障
+                            <i class="fas fa-clock text-primary me-2"></i>
+                            <strong>时段加价</strong>
+                            <ul class="ps-4 mt-2">
+                                <li>夜间服务（22:00-6:00）</li>
+                                <li>高峰时段（工作日7:00-9:00和17:00-19:00）</li>
+                                <li>节假日服务（周末及法定节假日）</li>
+                            </ul>
                         </li>
                         <li class="mb-3">
-                            <i class="fas fa-check-circle text-success me-2"></i>
-                            免费等待15分钟
-                        </li>
-                        <li class="mb-3">
-                            <i class="fas fa-check-circle text-success me-2"></i>
-                            24小时客服支持
+                            <i class="fas fa-hourglass-half text-primary me-2"></i>
+                            <strong>其他费用</strong>
+                            <ul class="ps-4 mt-2">
+                                <li>超时等待（15分钟后每分钟计费）</li>
+                                <li>特殊服务需求（如有）</li>
+                            </ul>
                         </li>
                     </ul>
+                    <div class="alert alert-info mb-0">
+                        <small>注：最终价格将根据实际行驶距离和服务时间计算</small>
+                    </div>
                 </div>
             </div>
         </div>
@@ -496,5 +283,4 @@ document.addEventListener('DOMContentLoaded', function() {
     dateInput.min = today;
 });
 </script>
->>>>>>> 29e35e4892c15854585299d3eee6ff215d96cbb2
 {% endblock %} 

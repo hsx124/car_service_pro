@@ -1,128 +1,91 @@
-<<<<<<< HEAD
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 from main.models import Booking
 from datetime import timedelta
+import pytz
+from django.core.mail import send_mail
+from django.conf import settings
 
 class Command(BaseCommand):
     help = '自动更新预订状态'
 
-    def handle(self, *args, **kwargs):
-        self.stdout.write('开始更新预订状态...')
-        now = timezone.now()
-
-        # 更新已确认的预订为进行中
+    def handle(self, *args, **options):
+        self.stdout.write('Starting to update booking status...')
+        
+        # Get current time in local timezone
+        local_tz = pytz.timezone('Asia/Shanghai')
+        current_time = timezone.localtime()
+        
+        self.stdout.write(f'Current time: {current_time}')
+        
+        # Update confirmed bookings to in_progress
         confirmed_bookings = Booking.objects.filter(
             status='confirmed',
-            pickup_time__lte=now,
-            pickup_time__gte=now - timedelta(hours=4)  # 4小时内的预订
+            pickup_time__lte=current_time
         )
+        
         for booking in confirmed_bookings:
             booking.status = 'in_progress'
             booking.save()
-            self.stdout.write(f'预订 #{booking.id} 已更新为进行中')
-
-        # 更新进行中的预订为已完成
+            self.stdout.write(f'Updated booking #{booking.id} to in_progress')
+        
+        self.stdout.write(f'Found {confirmed_bookings.count()} bookings to update to in_progress')
+        
+        # Update in_progress bookings to completed
         in_progress_bookings = Booking.objects.filter(
             status='in_progress',
-            pickup_time__lte=now - timedelta(hours=4)  # 超过4小时的预订
+            pickup_time__lte=current_time - timezone.timedelta(hours=2)
         )
+        
         for booking in in_progress_bookings:
             booking.status = 'completed'
             booking.save()
+            self.stdout.write(f'Updated booking #{booking.id} to completed')
             
-            # 释放车辆和司机
-            if booking.vehicle:
-                booking.vehicle.status = 'available'
-                booking.vehicle.save()
-            if booking.driver:
-                booking.driver.is_available = True
-                booking.driver.save()
-                
-            self.stdout.write(f'预订 #{booking.id} 已更新为已完成')
-
-        # 自动取消超时未确认的预订
-        pending_timeout = now - timedelta(hours=24)  # 24小时未确认自动取消
+        self.stdout.write(f'Found {in_progress_bookings.count()} bookings to update to completed')
+        
+        # Auto cancel pending bookings that are overdue
         pending_bookings = Booking.objects.filter(
             status='pending',
-            created_at__lte=pending_timeout
+            created_at__lte=current_time - timezone.timedelta(hours=24)
         )
+        
         for booking in pending_bookings:
             booking.status = 'cancelled'
             booking.save()
             
-            # 释放车辆和司机
-            if booking.vehicle:
-                booking.vehicle.status = 'available'
-                booking.vehicle.save()
-            if booking.driver:
-                booking.driver.is_available = True
-                booking.driver.save()
-                
-            self.stdout.write(f'预订 #{booking.id} 因超时未确认已自动取消')
+            # Send email notification
+            try:
+                subject = '预订自动取消通知'
+                message = f'''
+尊敬的用户：
 
-=======
-from django.core.management.base import BaseCommand
-from django.utils import timezone
-from main.models import Booking
-from datetime import timedelta
+您的预订 #{booking.id} 因超过24小时未确认，已被系统自动取消。
 
-class Command(BaseCommand):
-    help = '自动更新预订状态'
+预订详情：
+- 预订号：#{booking.id}
+- 接送时间：{timezone.localtime(booking.pickup_time).strftime('%Y-%m-%d %H:%M')}
+- 起点：{booking.pickup_location}
+- 终点：{booking.dropoff_location}
 
-    def handle(self, *args, **kwargs):
-        self.stdout.write('开始更新预订状态...')
-        now = timezone.now()
+如果您仍需要用车服务，请重新提交预订。
 
-        # 更新已确认的预订为进行中
-        confirmed_bookings = Booking.objects.filter(
-            status='confirmed',
-            pickup_time__lte=now,
-            pickup_time__gte=now - timedelta(hours=4)  # 4小时内的预订
-        )
-        for booking in confirmed_bookings:
-            booking.status = 'in_progress'
-            booking.save()
-            self.stdout.write(f'预订 #{booking.id} 已更新为进行中')
-
-        # 更新进行中的预订为已完成
-        in_progress_bookings = Booking.objects.filter(
-            status='in_progress',
-            pickup_time__lte=now - timedelta(hours=4)  # 超过4小时的预订
-        )
-        for booking in in_progress_bookings:
-            booking.status = 'completed'
-            booking.save()
+此致，
+车辆服务团队
+'''
+                send_mail(
+                    subject,
+                    message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [booking.user.email],
+                    fail_silently=False,
+                )
+                self.stdout.write(f'Sent cancellation email for booking #{booking.id}')
+            except Exception as e:
+                self.stdout.write(f'Failed to send cancellation email for booking #{booking.id}: {str(e)}')
             
-            # 释放车辆和司机
-            if booking.vehicle:
-                booking.vehicle.status = 'available'
-                booking.vehicle.save()
-            if booking.driver:
-                booking.driver.is_available = True
-                booking.driver.save()
-                
-            self.stdout.write(f'预订 #{booking.id} 已更新为已完成')
-
-        # 自动取消超时未确认的预订
-        pending_timeout = now - timedelta(hours=24)  # 24小时未确认自动取消
-        pending_bookings = Booking.objects.filter(
-            status='pending',
-            created_at__lte=pending_timeout
-        )
-        for booking in pending_bookings:
-            booking.status = 'cancelled'
-            booking.save()
+            self.stdout.write(f'Auto cancelled booking #{booking.id}')
             
-            # 释放车辆和司机
-            if booking.vehicle:
-                booking.vehicle.status = 'available'
-                booking.vehicle.save()
-            if booking.driver:
-                booking.driver.is_available = True
-                booking.driver.save()
-                
-            self.stdout.write(f'预订 #{booking.id} 因超时未确认已自动取消')
-
->>>>>>> 29e35e4892c15854585299d3eee6ff215d96cbb2
-        self.stdout.write(self.style.SUCCESS('预订状态更新完成！')) 
+        self.stdout.write(f'Found {pending_bookings.count()} bookings to auto cancel')
+        
+        self.stdout.write('Booking status update completed') 
