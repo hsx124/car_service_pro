@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 {% load static %}
 
@@ -182,4 +183,190 @@
         // 例如使用 Nominatim API 或其他地理编码服务
     });
 </script>
+=======
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}服务范围 - 用车预订平台{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<style>
+    #map {
+        height: 500px;
+        width: 100%;
+        border-radius: 10px;
+    }
+    .area-list {
+        max-height: 500px;
+        overflow-y: auto;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 页面标题 -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h1 class="text-center mb-4">服务范围</h1>
+        <p class="text-center lead mb-0">覆盖主要城市区域，为您提供便捷的用车服务</p>
+    </div>
+</section>
+
+<!-- 地图和服务区域列表 -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- 地图 -->
+            <div class="col-lg-8 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 服务区域列表 -->
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">服务区域列表</h3>
+                        <div class="area-list">
+                            {% for area in service_areas %}
+                            <div class="area-item mb-4">
+                                <h5>{{ area.name }}</h5>
+                                <p class="text-muted mb-2">基础价格：¥{{ area.base_price }}</p>
+                                <p class="mb-0">{{ area.description }}</p>
+                            </div>
+                            {% if not forloop.last %}
+                            <hr>
+                            {% endif %}
+                            {% empty %}
+                            <p class="text-center text-muted">暂无服务区域信息</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 服务说明 -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-map-marked-alt fa-3x mb-3 text-primary"></i>
+                        <h4>覆盖范围广</h4>
+                        <p class="mb-0">服务范围覆盖主要城市区域，满足您的各种用车需求。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-clock fa-3x mb-3 text-primary"></i>
+                        <h4>全天候服务</h4>
+                        <p class="mb-0">24小时随时待命，为您提供及时的用车服务。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-hand-holding-usd fa-3x mb-3 text-primary"></i>
+                        <h4>价格透明</h4>
+                        <p class="mb-0">根据服务区域明确定价，无隐藏费用。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 预订引导 -->
+<section class="py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">准备预订用车了吗？</h2>
+        <p class="lead mb-4">选择您的目的地，我们将为您提供最优质的服务</p>
+        <a href="{% url 'booking' %}" class="btn btn-primary btn-lg">立即预订</a>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 初始化地图
+        var map = L.map('map').setView([35.6762, 139.6503], 10);
+        
+        // 添加地图图层
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // 添加服务区域
+        {% for area in service_areas %}
+            {% if area.coordinates %}
+                var areaPolygon = L.polygon({{ area.coordinates|safe }}, {
+                    color: 'blue',
+                    fillColor: '#3388ff',
+                    fillOpacity: 0.2
+                }).addTo(map);
+                
+                areaPolygon.bindPopup(
+                    '<div class="p-3">' +
+                    '<h5>{{ area.name }}</h5>' +
+                    '<p class="mb-2">基础价格：¥{{ area.base_price }}</p>' +
+                    '<p class="mb-0">{{ area.description|truncatewords:30 }}</p>' +
+                    '</div>'
+                );
+
+                // 鼠标悬停效果
+                areaPolygon.on('mouseover', function() {
+                    this.setStyle({
+                        fillOpacity: 0.4
+                    });
+                });
+                areaPolygon.on('mouseout', function() {
+                    this.setStyle({
+                        fillOpacity: 0.2
+                    });
+                });
+            {% endif %}
+        {% endfor %}
+
+        // 自动调整地图视图以显示所有区域
+        var bounds = [];
+        {% for area in service_areas %}
+            {% if area.center_lat and area.center_lng %}
+                bounds.push([{{ area.center_lat }}, {{ area.center_lng }}]);
+            {% endif %}
+        {% endfor %}
+
+        if (bounds.length > 0) {
+            map.fitBounds(bounds);
+        }
+
+        // 添加搜索功能
+        var searchInput = document.createElement('input');
+        searchInput.type = 'text';
+        searchInput.placeholder = '搜索地址...';
+        searchInput.className = 'form-control';
+        searchInput.style.position = 'absolute';
+        searchInput.style.top = '10px';
+        searchInput.style.right = '10px';
+        searchInput.style.zIndex = '1000';
+        searchInput.style.width = '250px';
+        map.getContainer().appendChild(searchInput);
+
+        // 这里可以添加地址搜索功能的实现
+        // 例如使用 Nominatim API 或其他地理编码服务
+    });
+</script>
+>>>>>>> 29e35e4892c15854585299d3eee6ff215d96cbb2
 {% endblock %} 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% load static %}
 
 {% load i18n %}
@@ -1210,3 +1211,1217 @@
 </body>
 
 </html> 
+=======
+{% load static %}
+
+{% load i18n %}
+
+<!DOCTYPE html>
+
+<html lang="zh">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}{% endblock %} - {% trans '专业用车服务' %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+
+        /* 全局字体设置 */
+
+        body {
+
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+
+            color: #333;
+
+            padding-top: 70px; /* 为固定导航栏留出空间 */
+
+        }
+
+
+
+        /* 标题字体 */
+
+        h1, h2, h3, h4, h5, h6 {
+
+            font-weight: 700;
+
+            line-height: 1.4;
+
+        }
+
+
+
+        h1 { font-size: 2.5rem; }
+
+        h2 { font-size: 2rem; }
+
+        h3 { font-size: 1.75rem; }
+
+        h4 { font-size: 1.5rem; }
+
+        h5 { font-size: 1.25rem; }
+
+
+
+        /* 导航栏字体 */
+
+        .navbar {
+
+            font-size: 1.1rem;
+
+            font-weight: 500;
+
+        }
+
+        .navbar-brand {
+
+            font-size: 1.5rem;
+
+            font-weight: 700;
+
+        }
+
+
+
+        /* 页面内容字体 */
+
+        .page-content {
+
+            font-size: 1.1rem;
+
+        }
+
+
+
+        /* 按钮文字 */
+
+        .btn {
+
+            font-weight: 500;
+
+            font-size: 1.1rem;
+
+        }
+
+
+
+        /* 页脚字体 */
+
+        .footer {
+
+            font-size: 1rem;
+
+        }
+
+
+
+        /* 通用页首样式 */
+
+        .page-header {
+
+            background-color: #fff;
+
+            padding: 20px 0;
+
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+            margin-bottom: 30px;
+
+            position: relative;
+
+            z-index: 1;
+
+        }
+
+
+
+        /* 内容区域调整 */
+
+        .page-content {
+
+            padding-top: 20px;
+
+            position: relative;
+
+            z-index: 1;
+
+        }
+
+
+
+        /* 手风琴组件样式 */
+
+        .accordion-button {
+
+            font-size: 1.1rem;
+
+            font-weight: 500;
+
+        }
+
+        .accordion-body {
+
+            font-size: 1.1rem;
+
+            line-height: 1.8;
+
+        }
+
+        .accordion-button:not(.collapsed) {
+
+            background-color: #f8f9fa;
+
+            color: #0d6efd;
+
+        }
+
+        .accordion-button:focus {
+
+            box-shadow: none;
+
+            border-color: rgba(0,0,0,.125);
+
+        }
+
+        .accordion-item {
+
+            border-radius: 8px;
+
+            margin-bottom: 1rem;
+
+            border: 1px solid rgba(0,0,0,.125);
+
+        }
+
+        .accordion-button {
+
+            border-radius: 8px;
+
+        }
+
+
+
+        /* 导航栏固定和样式优化 */
+
+        .navbar {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            z-index: 1030;
+
+            background-color: rgba(255, 255, 255, 0.98);
+
+            backdrop-filter: blur(10px);
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+            height: 75px;
+
+            padding: 0;
+
+            transition: all 0.3s ease;
+
+        }
+
+
+
+        .navbar-brand {
+
+            font-size: 1.6rem;
+
+            font-weight: 700;
+
+            padding: 0 1.5rem;
+
+            color: #1a365d !important;
+
+            letter-spacing: -0.5px;
+
+            transition: color 0.3s ease;
+
+        }
+
+
+
+        .navbar-brand:hover {
+
+            color: #2b6cb0 !important;
+
+        }
+
+
+
+        .navbar-nav {
+
+            margin-left: 2rem;
+
+        }
+
+
+
+        .navbar-nav .nav-link {
+
+            padding: 0.8rem 1.2rem;
+
+            margin: 0 0.2rem;
+
+            position: relative;
+
+            color: #4a5568 !important;
+
+            font-weight: 500;
+
+            font-size: 1rem;
+
+            transition: all 0.3s ease;
+
+            border-radius: 6px;
+
+        }
+
+
+
+        .navbar-nav .nav-link:hover {
+
+            color: #2b6cb0 !important;
+
+            background-color: rgba(43, 108, 176, 0.05);
+
+        }
+
+
+
+        .navbar-nav .nav-link.active {
+
+            color: #2b6cb0 !important;
+
+            font-weight: 600;
+
+            background-color: rgba(43, 108, 176, 0.08);
+
+        }
+
+
+
+        /* 用户下拉菜单样式 */
+
+        .dropdown-menu {
+
+            border: none;
+
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+            border-radius: 8px;
+
+            padding: 0.5rem;
+
+            min-width: 200px;
+
+            margin-top: 0.5rem;
+
+        }
+
+
+
+        .dropdown-item {
+
+            padding: 0.7rem 1rem;
+
+            border-radius: 6px;
+
+            font-size: 0.95rem;
+
+            font-weight: 500;
+
+            color: #4a5568;
+
+            transition: all 0.2s ease;
+
+        }
+
+
+
+        .dropdown-item:hover {
+
+            background-color: rgba(43, 108, 176, 0.05);
+
+            color: #2b6cb0;
+
+        }
+
+
+
+        .dropdown-divider {
+
+            margin: 0.5rem 0;
+
+            border-color: #e2e8f0;
+
+        }
+
+
+
+        /* 移动端菜单按钮样式 */
+
+        .navbar-toggler {
+
+            border: none;
+
+            padding: 0.5rem;
+
+            margin-right: 1rem;
+
+            border-radius: 6px;
+
+            transition: background-color 0.3s ease;
+
+        }
+
+
+
+        .navbar-toggler:hover {
+
+            background-color: rgba(43, 108, 176, 0.05);
+
+        }
+
+
+
+        .navbar-toggler:focus {
+
+            box-shadow: none;
+
+            outline: none;
+
+        }
+
+
+
+        .navbar-toggler-icon {
+
+            width: 1.5em;
+
+            height: 1.5em;
+
+        }
+
+
+
+        /* 移动端导航菜单样式 */
+
+        @media (max-width: 991.98px) {
+
+            .navbar-collapse {
+
+                background-color: #fff;
+
+                padding: 1rem;
+
+                border-radius: 12px;
+
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+                position: absolute;
+
+                top: 80px;
+
+                left: 1rem;
+
+                right: 1rem;
+
+            }
+
+
+
+            .navbar-nav .nav-link {
+
+                padding: 0.8rem 1rem;
+
+                margin: 0.2rem 0;
+
+            }
+
+
+
+            .dropdown-menu {
+
+                box-shadow: none;
+
+                border: 1px solid #e2e8f0;
+
+                margin-top: 0;
+
+                margin-bottom: 0.5rem;
+
+            }
+
+        }
+
+
+
+        /* 调整body的顶部内边距以适应新的导航栏高度 */
+
+        body {
+
+            padding-top: 70px;
+
+        }
+
+
+
+        /* 调整page-header的top值以适应新的导航栏高度 */
+
+        .page-header {
+
+            margin-top: 75px;
+
+        }
+
+
+
+        /* 页面内容区域调整 */
+
+        .main-content {
+
+            min-height: calc(100vh - 120px);
+
+            padding-top: 20px;
+
+            position: relative;
+
+            z-index: 1;
+
+        }
+
+
+
+        /* 页脚样式 */
+
+        .footer {
+
+            background-color: #f8f9fa;
+
+            padding: 20px 0;
+
+            margin-top: auto;
+
+        }
+
+
+
+        /* 卡片样式优化 */
+
+        .card {
+
+            border-radius: 10px;
+
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+            transition: transform 0.2s ease-in-out;
+
+        }
+
+        .card:hover {
+
+            transform: translateY(-5px);
+
+        }
+
+        .card-title {
+
+            font-size: 1.3rem;
+
+            font-weight: 700;
+
+        }
+
+        .card-text {
+
+            font-size: 1.1rem;
+
+            line-height: 1.6;
+
+        }
+
+
+
+        /* 表单样式优化 */
+
+        .form-label {
+
+            font-weight: 500;
+
+            font-size: 1.1rem;
+
+        }
+
+        .form-control {
+
+            font-size: 1.1rem;
+
+            padding: 0.75rem 1rem;
+
+        }
+
+
+
+        /* 警告框样式 */
+
+        .alert {
+
+            font-size: 1.1rem;
+
+            border-radius: 8px;
+
+        }
+
+
+
+        /* 语言选择器样式 */
+
+        .language-selector {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 0.5rem;
+
+            padding: 0.5rem 1rem;
+
+            border-radius: 6px;
+
+            transition: all 0.3s ease;
+
+            color: #4a5568;
+
+            text-decoration: none;
+
+        }
+
+
+
+        .language-selector:hover {
+
+            background-color: rgba(43, 108, 176, 0.05);
+
+            color: #2b6cb0;
+
+        }
+
+
+
+        .language-selector i {
+
+            font-size: 1.2rem;
+
+        }
+
+
+
+        /* 社交媒体图标样式 */
+
+        .social-icons {
+
+            display: flex;
+
+            gap: 1.5rem;
+
+            margin-top: 1rem;
+
+        }
+
+
+
+        .social-icons a {
+
+            color: #4a5568;
+
+            font-size: 1.5rem;
+
+            transition: all 0.3s ease;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 0.5rem;
+
+        }
+
+
+
+        .social-icons a:hover {
+
+            color: #2b6cb0;
+
+            transform: translateY(-2px);
+
+        }
+
+
+
+        .social-icons .social-text {
+
+            font-size: 0.9rem;
+
+            font-weight: 500;
+
+        }
+
+
+
+        /* 固定悬浮工具栏样式 */
+
+        .float-toolbar {
+
+            position: fixed;
+
+            right: 20px;
+
+            bottom: 20px;
+
+            z-index: 1000;
+
+        }
+
+
+
+        .float-btn-wrapper {
+
+            position: relative;
+
+            display: inline-block;
+
+        }
+
+
+
+        .float-btn {
+
+            border: none;
+
+            cursor: pointer;
+
+            padding: 0;
+            position: right;
+
+            transition: all 0.3s ease;
+
+        }
+
+
+
+        .float-btn.customer-service {
+
+            width: auto;
+
+            height: 45px;
+
+            padding: 0 25px;
+
+            display: flex;
+
+            flex-direction: row;
+
+            align-items: center;
+
+            gap: 8px;
+
+            background-color: #0066ff;
+
+            color: #fff;
+
+            border-radius: 50px;
+
+            font-weight: 500;
+
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.2);
+
+            position: relative;
+
+        }
+
+
+
+        .float-btn.back-to-top {
+
+
+            right: 100%;
+
+            margin-left: 80px;
+            margin-top: 15px;
+            bottom: 0;
+
+            width: 45px;
+
+            height: 45px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background-color: #fff;
+
+            border-radius: 25%;
+
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+            color: #4a5568;
+
+        }
+
+
+
+        .float-btn.back-to-top:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+            color: #2b6cb0;
+
+        }
+
+
+
+        .float-btn.back-to-top i {
+
+            font-size: 1.2rem;
+
+            margin: 0;
+
+        }
+
+
+
+        .float-btn.back-to-top .btn-text {
+
+            font-size: 0.7rem;
+
+            margin-top: 2px;
+
+        }
+
+
+
+        @media (max-width: 768px) {
+
+            .float-toolbar {
+
+                right: 15px;
+
+                bottom: 15px;
+
+            }
+
+            
+
+            .float-btn.customer-service {
+
+                padding: 0 20px;
+
+            }
+
+
+
+            .float-btn.back-to-top {
+
+                margin-left: 10px;
+
+            }
+
+        }
+
+    </style>
+
+    {% block extra_css %}{% endblock %}
+
+</head>
+
+<body>
+
+    <!-- 导航栏 -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="{% url 'home' %}">{% trans '专业用车' %}</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav me-auto">
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'booking' %}">{% trans '预订用车' %}</a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'vehicles' %}">{% trans '车型介绍' %}</a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'drivers' %}">{% trans '司机团队' %}</a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'service_area' %}">{% trans '服务区域' %}</a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'safety' %}">{% trans '安全保障' %}</a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'about' %}">{% trans '关于我们' %}</a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'faq' %}">{% trans '常见问题' %}</a>
+
+                    </li>
+
+                </ul>
+
+                <ul class="navbar-nav">
+
+                    {% if user.is_authenticated %}
+
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+
+                            {{ user.get_full_name|default:user.username }}
+
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+
+                            <li><a class="dropdown-item" href="{% url 'profile' %}">{% trans '个人资料' %}</a></li>
+
+                            <li><a class="dropdown-item" href="{% url 'my_bookings' %}">{% trans '我的预订' %}</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li><a class="dropdown-item" href="{% url 'account_logout' %}">{% trans '退出' %}</a></li>
+
+                        </ul>
+
+                    </li>
+
+                    {% else %}
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'account_login' %}">{% trans '登录' %}</a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'account_signup' %}">{% trans '注册' %}</a>
+
+                    </li>
+
+                    {% endif %}
+
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link language-selector dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                            <i class="bi bi-globe2"></i>
+
+                            {% trans '语言' %}
+
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+
+                            <li><a class="dropdown-item" href="{% url 'set_language' %}?language=zh-hans">简体中文</a></li>
+
+                            <li><a class="dropdown-item" href="{% url 'set_language' %}?language=en">English</a></li>
+
+                            <li><a class="dropdown-item" href="{% url 'set_language' %}?language=ja">日本語</a></li>
+
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- 主要内容区域 -->
+
+    <div class="main-content">
+
+        {% if messages %}
+
+        <div class="container mt-3">
+
+            {% for message in messages %}
+
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+
+                {{ message }}
+
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+
+
+        {% block content %}{% endblock %}
+
+    </div>
+
+
+
+    <!-- 固定悬浮工具栏 -->
+
+    <div class="float-toolbar">
+
+        <div class="float-btn-wrapper">
+
+            <button class="float-btn customer-service" onclick="openCustomerService()">
+
+                <i class="bi bi-chat-dots-fill"></i>
+
+                <span class="btn-text">在线客服</span>
+
+            </button>
+
+            <button class="float-btn back-to-top" onclick="scrollToTop()">
+
+                <i class="bi bi-arrow-up"></i>
+
+                <span class="btn-text">顶部</span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- 页脚 -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <h5>{% trans '联系我们' %}</h5>
+
+                    <p>{% trans '客服热线：400-123-4567' %}</p>
+
+                    <p>{% trans '邮箱：service@example.com' %}</p>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <h5>{% trans '快速链接' %}</h5>
+
+                    <ul class="list-unstyled">
+
+                        <li><a href="{% url 'about' %}">{% trans '关于我们' %}</a></li>
+
+                        <li><a href="{% url 'contact' %}">{% trans '联系我们' %}</a></li>
+
+                        <li><a href="{% url 'privacy' %}">{% trans '隐私政策' %}</a></li>
+
+                        <li><a href="{% url 'terms' %}">{% trans '服务条款' %}</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <h5>{% trans '关注我们' %}</h5>
+
+                    <div class="social-icons">
+
+                        <!-- <a href="#" title="微信">
+
+                            <i class="bi bi-wechat"></i>
+
+                            <span class="social-text">微信</span>
+
+                        </a> -->
+                        <a href="#" title="微信" class="bi bi-wechat"></a>
+                        <a href="#" title="抖音" class="bi bi-tiktok"></a>
+                        <a href="#" title="小红书" class="bi bi-book"></a>
+                        <a href="#" title="Instagram" class="bi bi-instagram"></a>
+                        <a href="#" title="Facebook" class="bi bi-facebook"></a>
+                        <a href="#" title="Line" class="bi bi-line"></a>
+
+                        <a href="#" title="Linkedin" class="bi bi-linkedin"></a>
+
+                        <a href="#" title="Twitter X" class="bi bi-twitter-x"></a>
+                        <a href="#" title="WhatsApp"class="bi bi-whatsapp"></a>
+
+                    </div>
+
+                    <p class="mt-3">{% trans '微信公众号：专业用车服务' %}</p>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div class="text-center">
+
+                <p>&copy; {% now "Y" %} {% trans '专业用车服务' %}. {% trans '版权所有' %}.</p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <script>
+
+        // 返回顶部功能
+
+        function scrollToTop() {
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: 'smooth'
+
+            });
+
+        }
+
+
+
+        // 打开客服功能
+
+        function openCustomerService() {
+
+            if (typeof _MEIQIA !== 'undefined') {
+
+                _MEIQIA('showPanel');  // 打开美洽客服
+
+            }
+
+        }
+
+    </script>
+
+
+
+    <!-- 美洽客服系统 -->
+
+    <script type='text/javascript'>
+
+        (function(m, ei, q, i, a, j, s) {
+
+            m[a] = m[a] || function() {
+
+                (m[a].a = m[a].a || []).push(arguments)
+
+            };
+
+            j = ei.createElement(q),
+
+                s = ei.getElementsByTagName(q)[0];
+
+            j.async = true;
+
+            j.charset = 'UTF-8';
+
+            j.src = i;
+
+            s.parentNode.insertBefore(j, s)
+
+        })(window, document, 'script', '//eco-api.meiqia.com/dist/meiqia.js', '_MEIQIA');
+
+        _MEIQIA('entId', 'YOUR_MEIQIA_ENTERPRISE_ID');  // 替换为你的美洽企业ID
+
+        _MEIQIA('language', '{% if LANGUAGE_CODE == "en" %}en{% else %}zh_CN{% endif %}');
+
+    </script>
+
+
+
+    {% block extra_js %}{% endblock %}
+
+</body>
+
+</html> 
+>>>>>>> 29e35e4892c15854585299d3eee6ff215d96cbb2

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base.html" %}
 {% load i18n %}
 
@@ -52,4 +53,60 @@
         </div>
     </div>
 </section>
+=======
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}验证邮件已发送 - 用车预订平台{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-envelope-open-text fa-3x text-primary"></i>
+                        </div>
+                        <h1 class="text-center mb-4">{% trans "验证邮件已发送" %}</h1>
+                        
+                        <div class="alert alert-info" role="alert">
+                            <p class="mb-0">
+                                {% blocktrans %}
+                                我们已向您的邮箱发送了一封验证邮件。请查收邮件并点击其中的确认链接来完成注册。
+                                {% endblocktrans %}
+                            </p>
+                        </div>
+
+                        <div class="mt-4">
+                            <h5 class="text-center">没有收到验证邮件？</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    请检查您的垃圾邮件文件夹
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    确保输入的邮箱地址正确
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    如果几分钟后仍未收到，请尝试重新注册
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <a href="{% url 'home' %}" class="btn btn-outline-primary">
+                                {% trans "返回首页" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+>>>>>>> 29e35e4892c15854585299d3eee6ff215d96cbb2
 {% endblock %} 

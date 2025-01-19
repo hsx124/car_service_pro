@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base.html" %}
 {% load i18n %}
 {% load crispy_forms_tags %}
@@ -54,4 +55,62 @@
         </div>
     </div>
 </section>
+=======
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}注册 - 用车预订平台{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body p-5">
+                        <h1 class="text-center mb-4">{% trans "注册" %}</h1>
+                        
+                        {% if messages %}
+                        <div class="alert alert-info" role="alert">
+                            {% for message in messages %}
+                            <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                            {% endif %}
+                            
+                            <div class="d-grid gap-2 mt-4">
+                                <button class="btn btn-primary" type="submit">{% trans "注册" %}</button>
+                            </div>
+                        </form>
+
+                        <div class="mt-4 text-center">
+                            <p>
+                                {% trans "已有账号?" %}
+                                <a href="{% url 'account_login' %}" class="text-primary">{% trans "立即登录" %}</a>
+                            </p>
+                        </div>
+
+                        <div class="mt-4">
+                            <p class="text-center text-muted small">
+                                {% trans "注册即表示您同意我们的" %}
+                                <a href="{% url 'terms' %}" class="text-primary">{% trans "服务条款" %}</a>
+                                {% trans "和" %}
+                                <a href="{% url 'privacy' %}" class="text-primary">{% trans "隐私政策" %}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+>>>>>>> 29e35e4892c15854585299d3eee6ff215d96cbb2
 {% endblock %} 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base.html" %}
 {% load i18n %}
 {% load static %}
@@ -169,4 +170,177 @@
         </div>
     </div>
 </section>
+=======
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans '我的预订' %} - Car Service Pro{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- 侧边栏 -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <div class="avatar-preview mb-3">
+                                <img src="{{ user.profile.get_avatar_url }}" 
+                                     class="rounded-circle img-fluid" 
+                                     style="width: 100px; height: 100px;"
+                                     alt="{{ user.username }}">
+                            </div>
+                            <h5 class="mb-0">{{ user.get_full_name|default:user.username }}</h5>
+                            <p class="text-muted">{{ user.email }}</p>
+                        </div>
+                        <div class="list-group">
+                            <a href="{% url 'profile' %}" class="list-group-item list-group-item-action">
+                                <i class="bi bi-person-circle me-2"></i> {% trans '个人资料' %}
+                            </a>
+                            <a href="{% url 'my_bookings' %}" class="list-group-item list-group-item-action active">
+                                <i class="bi bi-calendar-check me-2"></i> {% trans '我的预订' %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 主要内容 -->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">{% trans '预订历史' %}</h4>
+                        
+                        <!-- 预订状态筛选 -->
+                        <div class="mb-4">
+                            <div class="btn-group" role="group">
+                                <a href="?status=all" class="btn btn-outline-primary {% if not request.GET.status or request.GET.status == 'all' %}active{% endif %}">
+                                    {% trans '全部' %}
+                                </a>
+                                <a href="?status=pending" class="btn btn-outline-primary {% if request.GET.status == 'pending' %}active{% endif %}">
+                                    {% trans '待确认' %}
+                                </a>
+                                <a href="?status=confirmed" class="btn btn-outline-primary {% if request.GET.status == 'confirmed' %}active{% endif %}">
+                                    {% trans '已确认' %}
+                                </a>
+                                <a href="?status=in_progress" class="btn btn-outline-primary {% if request.GET.status == 'in_progress' %}active{% endif %}">
+                                    {% trans '进行中' %}
+                                </a>
+                                <a href="?status=completed" class="btn btn-outline-primary {% if request.GET.status == 'completed' %}active{% endif %}">
+                                    {% trans '已完成' %}
+                                </a>
+                                <a href="?status=cancelled" class="btn btn-outline-primary {% if request.GET.status == 'cancelled' %}active{% endif %}">
+                                    {% trans '已取消' %}
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 预订列表 -->
+                        {% if bookings %}
+                            {% for booking in bookings %}
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <h5 class="card-title">
+                                                {% trans '预订编号' %}: #{{ booking.id }}
+                                                <span class="badge {% if booking.status == 'pending' %}bg-warning
+                                                                  {% elif booking.status == 'confirmed' %}bg-info
+                                                                  {% elif booking.status == 'in_progress' %}bg-primary
+                                                                  {% elif booking.status == 'completed' %}bg-success
+                                                                  {% else %}bg-secondary{% endif %}">
+                                                    {{ booking.get_status_display }}
+                                                </span>
+                                            </h5>
+                                            <p class="mb-1">
+                                                <i class="bi bi-geo-alt me-2"></i>
+                                                {{ booking.pickup_location }} → {{ booking.destination }}
+                                            </p>
+                                            <p class="mb-1">
+                                                <i class="bi bi-clock me-2"></i>
+                                                {{ booking.pickup_time|date:"Y-m-d H:i" }}
+                                            </p>
+                                            <p class="mb-1">
+                                                <i class="bi bi-car-front me-2"></i>
+                                                {{ booking.vehicle.brand }} {{ booking.vehicle.model }}
+                                                ({{ booking.vehicle.get_type_display }})
+                                            </p>
+                                            <p class="mb-0">
+                                                <i class="bi bi-person me-2"></i>
+                                                {% trans '司机' %}: {{ booking.driver.user.get_full_name }}
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4 text-md-end">
+                                            <p class="h4 mb-3">￥{{ booking.price }}</p>
+                                            {% if booking.status == 'pending' or booking.status == 'confirmed' %}
+                                            <form method="post" action="{% url 'cancel_booking' booking.id %}" 
+                                                  onsubmit="return confirm('确定要取消这个预订吗？')">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-outline-danger">
+                                                    <i class="bi bi-x-circle me-1"></i>
+                                                    {% trans '取消预订' %}
+                                                </button>
+                                            </form>
+                                            {% elif booking.status == 'completed' and not booking.review %}
+                                            <a href="{% url 'add_review' booking.id %}" class="btn btn-outline-primary">
+                                                <i class="bi bi-star me-1"></i>
+                                                {% trans '评价服务' %}
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            
+                            <!-- 分页 -->
+                            {% if is_paginated %}
+                            <nav class="mt-4">
+                                <ul class="pagination justify-content-center">
+                                    {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">
+                                            <i class="bi bi-chevron-left"></i>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                    
+                                    <li class="page-item disabled">
+                                        <span class="page-link">
+                                            {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+                                        </span>
+                                    </li>
+                                    
+                                    {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">
+                                            <i class="bi bi-chevron-right"></i>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                            {% endif %}
+                        {% else %}
+                            <div class="text-center py-5">
+                                <div class="mb-4">
+                                    <i class="bi bi-calendar-x display-4 text-muted"></i>
+                                </div>
+                                <h5>{% trans '暂无预订记录' %}</h5>
+                                <p class="text-muted">{% trans '您还没有任何预订记录，立即预订用车开启您的旅程吧！' %}</p>
+                                <a href="{% url 'booking' %}" class="btn btn-primary">
+                                    <i class="bi bi-plus-circle me-1"></i>
+                                    {% trans '立即预订' %}
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+>>>>>>> 29e35e4892c15854585299d3eee6ff215d96cbb2
 {% endblock %} 

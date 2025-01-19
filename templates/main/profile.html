@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base.html" %}
 {% load i18n %}
 {% load crispy_forms_tags %}
@@ -128,4 +129,136 @@ document.getElementById('avatarUpload').addEventListener('change', function(e) {
 });
 </script>
 {% endblock %}
+=======
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}{% trans '个人资料' %} - Car Service Pro{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- 侧边栏 -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <div class="avatar-upload mb-3">
+                                <div class="avatar-preview" style="width: 150px; height: 150px; margin: 0 auto;">
+                                    <img src="{{ user.profile.get_avatar_url }}" 
+                                         class="rounded-circle img-fluid" 
+                                         alt="{{ user.username }}"
+                                         id="avatarPreview">
+                                </div>
+                                <div class="mt-2">
+                                    <label for="avatarUpload" class="btn btn-sm btn-outline-primary">
+                                        {% trans '更换头像' %}
+                                    </label>
+                                </div>
+                            </div>
+                            <h5 class="mb-0">{{ user.get_full_name|default:user.username }}</h5>
+                            <p class="text-muted">{{ user.email }}</p>
+                        </div>
+                        <div class="list-group">
+                            <a href="{% url 'profile' %}" class="list-group-item list-group-item-action active">
+                                <i class="bi bi-person-circle me-2"></i> {% trans '个人资料' %}
+                            </a>
+                            <a href="{% url 'my_bookings' %}" class="list-group-item list-group-item-action">
+                                <i class="bi bi-calendar-check me-2"></i> {% trans '我的预订' %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 主要内容 -->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">{% trans '编辑个人资料' %}</h4>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" id="avatarUpload" name="avatar" class="d-none" accept="image/*">
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">{% trans '姓' %}</label>
+                                    <input type="text" name="last_name" class="form-control" value="{{ user.last_name }}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">{% trans '名' %}</label>
+                                    <input type="text" name="first_name" class="form-control" value="{{ user.first_name }}">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">{% trans '电子邮箱' %}</label>
+                                <input type="email" class="form-control" value="{{ user.email }}" readonly>
+                                <small class="text-muted">{% trans '邮箱地址不可更改' %}</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">{% trans '手机号码' %}</label>
+                                <input type="tel" name="phone" class="form-control" value="{{ user.profile.phone }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">{% trans '地址' %}</label>
+                                <input type="text" name="address" class="form-control" value="{{ user.profile.address }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">{% trans '个人简介' %}</label>
+                                <textarea name="bio" class="form-control" rows="3">{{ user.profile.bio }}</textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">{% trans '偏好语言' %}</label>
+                                <select name="preferred_language" class="form-select">
+                                    <option value="zh-hans" {% if user.profile.preferred_language == 'zh-hans' %}selected{% endif %}>中文</option>
+                                    <option value="en" {% if user.profile.preferred_language == 'en' %}selected{% endif %}>English</option>
+                                    <option value="ja" {% if user.profile.preferred_language == 'ja' %}selected{% endif %}>日本語</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input type="checkbox" name="notification_enabled" class="form-check-input" 
+                                           id="notification_enabled" {% if user.profile.notification_enabled %}checked{% endif %}>
+                                    <label class="form-check-label" for="notification_enabled">
+                                        {% trans '接收通知和更新' %}
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-check-circle me-1"></i> {% trans '保存更改' %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+document.getElementById('avatarUpload').addEventListener('change', function(e) {
+    if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('avatarPreview').src = e.target.result;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    }
+});
+</script>
+{% endblock %}
+>>>>>>> 29e35e4892c15854585299d3eee6ff215d96cbb2
 {% endblock %} 
